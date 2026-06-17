@@ -1,0 +1,410 @@
+@custom-variant dark (&:is(.dark *));
+
+/* ALANA Project Typography System */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vuPQ--5Ip2sSQ.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v30/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+}
+
+:root {
+  --font-size: 16px;
+  --font-sans: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
+
+  /* ALANA Brand Colors */
+  --background: #F3F3F3;
+  --foreground: #262424;
+  --card: #F3F3F3;
+  --card-foreground: #262424;
+  --popover: #F3F3F3;
+  --popover-foreground: #262424;
+  --primary: #262424;
+  --primary-foreground: #F3F3F3;
+  --secondary: #D9D9D9;
+  --secondary-foreground: #262424;
+  --muted: #D9D9D9;
+  --muted-foreground: #262424;
+  --accent: #DCC2FE;
+  --accent-foreground: #262424;
+  --destructive: #d4183d;
+  --destructive-foreground: #F3F3F3;
+  --border: rgba(38, 36, 36, 0.2);
+  --input: transparent;
+  --input-background: #D9D9D9;
+  --switch-background: #D9D9D9;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #DCC2FE;
+  --chart-1: #DCC2FE;
+  --chart-2: #D9D9D9;
+  --chart-3: #262424;
+  --chart-4: #F3F3F3;
+  --chart-5: #DCC2FE;
+  --radius: 0.625rem;
+  --sidebar: #F3F3F3;
+  --sidebar-foreground: #262424;
+  --sidebar-primary: #262424;
+  --sidebar-primary-foreground: #F3F3F3;
+  --sidebar-accent: #D9D9D9;
+  --sidebar-accent-foreground: #262424;
+  --sidebar-border: rgba(38, 36, 36, 0.1);
+  --sidebar-ring: #DCC2FE;
+}
+
+.dark {
+  --background: #262424;
+  --foreground: #F3F3F3;
+  --card: #262424;
+  --card-foreground: #F3F3F3;
+  --popover: #262424;
+  --popover-foreground: #F3F3F3;
+  --primary: #F3F3F3;
+  --primary-foreground: #262424;
+  --secondary: #DCC2FE;
+  --secondary-foreground: #262424;
+  --muted: rgba(220, 194, 254, 0.2);
+  --muted-foreground: #D9D9D9;
+  --accent: #DCC2FE;
+  --accent-foreground: #262424;
+  --destructive: #d4183d;
+  --destructive-foreground: #F3F3F3;
+  --border: rgba(220, 194, 254, 0.2);
+  --input: rgba(220, 194, 254, 0.1);
+  --ring: #DCC2FE;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: #DCC2FE;
+  --chart-2: #D9D9D9;
+  --chart-3: #F3F3F3;
+  --chart-4: rgba(220, 194, 254, 0.7);
+  --chart-5: rgba(217, 217, 217, 0.7);
+  --sidebar: #262424;
+  --sidebar-foreground: #F3F3F3;
+  --sidebar-primary: #DCC2FE;
+  --sidebar-primary-foreground: #262424;
+  --sidebar-accent: rgba(220, 194, 254, 0.2);
+  --sidebar-accent-foreground: #F3F3F3;
+  --sidebar-border: rgba(220, 194, 254, 0.2);
+  --sidebar-ring: #DCC2FE;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  /* Smooth transitions for all interactive elements */
+  button,
+  a,
+  input[type="range"],
+  [role="button"] {
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+    h2 {
+      font-size: var(--text-xl);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-mono);
+    }
+    h3 {
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-mono);
+    }
+    h4 {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+    p {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+    label {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-mono);
+    }
+    button {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-medium);
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+    input {
+      font-size: var(--text-base);
+      font-weight: var(--font-weight-normal);
+      line-height: 1.5;
+      font-family: var(--font-sans);
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* ALANA Typography Utility Classes */
+@layer utilities {
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+}
+
+/* ==================================================================================
+   ALANA TYPOGRAPHY OVERRIDES
+   ================================================================================== */
+
+h1 {
+  font-size: 48px !important;
+  line-height: 1.2 !important;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 60px !important;
+  }
+}
+
+h2,
+h2.font-medium,
+h2.font-bold,
+h2.font-semibold,
+h2[class] {
+  font-family: var(--font-mono) !important;
+  font-weight: 500 !important;
+  font-size: 28px !important;
+}
+
+@media (min-width: 768px) {
+  h2,
+  h2.font-medium,
+  h2.font-bold,
+  h2.font-semibold,
+  h2[class] {
+    font-size: 36px !important;
+  }
+}
+
+h3,
+h3.font-medium,
+h3.font-bold,
+h3.font-semibold,
+h3[class] {
+  font-family: var(--font-mono) !important;
+  font-weight: 500 !important;
+  font-size: 24px !important;
+}
+
+@media (min-width: 768px) {
+  h3,
+  h3.font-medium,
+  h3.font-bold,
+  h3.font-semibold,
+  h3[class] {
+    font-size: 30px !important;
+  }
+}
+
+h4,
+h4.font-medium,
+h4.font-bold,
+h4.font-semibold,
+h4[class] {
+  font-family: var(--font-sans) !important;
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}
+
+@media (min-width: 768px) {
+  h4,
+  h4.font-medium,
+  h4.font-bold,
+  h4.font-semibold,
+  h4[class] {
+    font-size: 20px !important;
+  }
+}
+
+h1 + p,
+h1 + * > p:first-child {
+  font-size: 18px !important;
+}
+
+@media (min-width: 768px) {
+  h1 + p,
+  h1 + * > p:first-child {
+    font-size: 20px !important;
+  }
+}
+
+h2 + p,
+h2 + * > p:first-child {
+  font-size: 16px !important;
+}
+
+@media (min-width: 768px) {
+  h2 + p,
+  h2 + * > p:first-child {
+    font-size: 18px !important;
+  }
+}
+
+/* ==================================================================================
+   ALANA COMPONENT STYLES
+   ================================================================================== */
+
+@layer components {
+  .alana-card {
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--foreground);
+    border-radius: 0;
+    border-bottom-right-radius: 25px;
+    background: var(--background);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .alana-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(38, 36, 36, 0.1);
+  }
+
+  .alana-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--foreground);
+    color: var(--background);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    padding: 0 2rem;
+    height: 2.5rem;
+    border-radius: 0;
+    border-bottom-right-radius: 25px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .alana-btn:hover {
+    background: var(--accent);
+    color: var(--foreground);
+  }
+
+  .alana-btn-outline {
+    background: transparent;
+    color: var(--foreground);
+    border: 1px solid var(--foreground);
+  }
+
+  .alana-btn-outline:hover {
+    background: var(--foreground);
+    color: var(--background);
+  }
+}
+
+/* Sonner Toast ALANA Brand Overrides */
+[data-sonner-toast] {
+  background: #F3F3F3 !important;
+  color: #262424 !important;
+  border: 2px solid #DCC2FE !important;
+  box-shadow: 0 4px 12px rgba(38, 36, 36, 0.15) !important;
+}
+
+[data-sonner-toast] [data-title] {
+  color: #262424 !important;
+  font-weight: 500 !important;
+  font-family: var(--font-sans) !important;
+}
+
+[data-sonner-toast] [data-description] {
+  color: #262424 !important;
+  opacity: 1 !important;
+  font-family: var(--font-sans) !important;
+}

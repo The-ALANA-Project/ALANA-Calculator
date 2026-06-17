@@ -1,0 +1,962 @@
+Contribution Evaluation,"PREPARATION PHASE
+To understand the work that different people in ALANA go through we require template workflows. The following examples attempt to unravel the mysteries.",,,"ESTIMATION PHASE
+Before initiating any work, we evaluate the scope, requirements, and expected outcomes. This evaluation includes scoring the project based on its reach, impact, and the effort required.",,,,"EXECUTION PHASE
+This phase involves carrying out the tasks necessary for project completion. It requires effective coordination among team members to meet the set objectives.",,"FINAL RESULT
+","REVIEW PHASE
+Upon completing the work, we measure audience impact and distribute a bonus upon how the project impacts the real world/ audience reception.",,
+Contribution Category,"ALANA REFERENCING BRANCH
+Select the ALANA Branch your task belongs to",Small Workflow Description,Tools,"Reach
+Number of people affected (summarizing current follower amount on social media divided by the different accounts provides a rough estimate)
+
+For Procuts the actual number of consumers will be another additional indicator if >= 100 people","Impact on an organizational Level
+3 = massive
+2 = high impact
+1 = medium impact
+0.5 = low impact
+0.25 = minimal impact","Impact on a customer Level
+3 = massive
+2 = high impact
+1 = medium impact
+0.5 = low impact
+0.25 = minimal impact","Battery Life Bar
+Imagine a battery and decide how much of that battery gets drained to perform the task at hand.
+
+XS  = 1 - 10P in %
+S   = 11 - 30P in %
+M   = 31 - 50P in %
+L   = 51 - 70P in %
+XL  = 71 - 90P in %
+XXL = 91 - 100P in %
+
+The user needs to input this personally and the Nucleus Guardian would have the ability to adjust this one value only.","Alignment and Quality Control (estimate)
+Alignment = On-brand delivery which means delivering a concept that is recognizable and propels the ALANA brand vision as well as its according visuals!
+
+Quality = in comparison to similar products/ spectrum of comparable products out there
+
+poor = 0 - 29% 
+fair quality = 30 - 49%
+good = 50 - 64%
+very good = 65 - 84%
+excellent = 85 - 100%
+
+The user needs to input this personally and the Nucleus Guardian would have the ability to adjust this one value only.","Interim Result
+Final XP Result takes the total ranking/ influence under perspective:
+
+Infrastructure & Strategy = Rank 7
+Onboarding = Rank 6
+Brand Identity & Socials = Rank 5
+----------------------
+ALANAmagazine = Rank 4
+ALANA's Boutique = Rank 4
+ALANA's World = Rank 4
+ALANA AI = Rank 4","AVERAGE MULTIPLIER
+Add if a task is done more than once to fit the calculation. If a task is repeated, not every task will require the same amount of effort in a series. Hence, we call it ""average multiplier."" These are the available multipliers:
+
+1-5   Repetitions = *3
+6-10  Repetitions = *5
+11-20 Repetitions = *8
+> 20  Repetitions = *13","Tipping Bonus
+Rewarding work that has been better than expected. The default option is not getting a bonus. 
+
+0%  = No Tip
+5%  = Small Tip
+15% = Medium Tip
+20% = Big Tip
+25% = Huge Tip","Final Result Evaluation
+Interim Result * Tipping Bonus (if applicable)",
+Nucleus Guardian Duties (monthly),Infrastructure & Strategy,"What does it take to lead as a Nucleus Guardian in The ALANA Project?
+- Managing and leading with compassion and as a guide toward the dedicated team
+- Organizing weekly and exceptional meetings when and if necessary
+- Reviewing and improving tasks on DeWork for their team
+- Responsibility for team members and their dedicated area
+- Foresight when it comes to team management along ALANA's 10 Principles of a Good Community
+","What tools are required?
+- Access to Discord
+- Access to Google Sheets
+- Access to Milanote
+- Access to Figma/ Canva","1,453",3,0.25,25.00%,85.00%,702,702,,,
+"Writing a Grant Proposal
+
+* Example calculation based on the Optimism Grant","Infrastructure & Strategy, FABA Studio","What does it take to write a grant proposal?
+- Define the objective, purpose and proposed solution of the grant proposal
+- Evaluate value alignment with the potential grant giver
+- Research and gathering information on how to write the grant
+- Network building in the grant giver community
+- Coordination with the Branding Team
+- Refined pitch for your proposed project 
+- Following procedure to hand in the grant proposal to the grant giver","What tools are required?
+- Access to Discord
+- Access to Google Sheets
+- Access to Figma/ Canva","1,453",2.5,1.5,60.00%,80.00%,"1,953","1,953",0,"1,953",
+"Writing and submitting a DAO Proposal 
+
+* Example calculation based on the Nucleus Guardian role description","Infrastructure & Strategy, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld, Onboarding, Brand Identity & Socials","What does it take to write and submit a DAO Proposal?
+- Investigation in the dedicated proposal topic (can be technical, require work with third parties, purely investigative, etc...)
+- Open up a new conversation thread in the DAC Discussions channels. 
+- Create a new template and fill in all the data as seen in former examples.
+- Involve other people from your dedicated branch and wider community to create a proposal that will meet the quorum by utilizing the formerly mentioned communication channel.
+- If necessary build working groups.
+- Finally, post the finished proposal on Discord/ Snapshot and bring attention to it by communicating the active proposal.
+- Implementing a DAO Proposal is another task and can look very unique depending on what is being proposed!","What tools are required?
+- Access to Discord
+- Access to Google Sheets
+- Access to Snapshot (if applicable)","1,453",2,1,70.00%,75.00%,"1,602","1,602",0,"1,602",
+"Management of Legal Protection for ALANA
+
+* Example calculation based on Terms & Conditions around ALANAmagazine submissions",Infrastructure & Strategy,"What does it take to write drafts around legal protection for ALANA and the different branches and coordinate those with our lawyers?
+- Review existing community rights laws and frameworks.
+- Identify and conduct more profound research on the legal issues at hand that need solving or protection.
+- Inform yourself about relevant local, state, and federal regulations, considering where ALANA is incorporated.
+- Outline the main sections of legal protection needed by writing an initial draft for the issue at hand.
+- Reach out to an ALANA lawyer and introduce the issue as well as sending your draft.
+- Schedule a meeting with an ALANA lawyer to discuss potential adjustments and finalizations of the draft.
+- Refine the final draft with the lawyer, ensure alignment with existing laws and regulations, and strengthen language to maximize legal protection.
+- Present draft legal documents to community members for input and do another feedback loop if required.
+- Implement the new legal draft on the platforms or public forums where needed.","What tools are required?
+- Access to Google Sheets
+- Access to Zoom or similar
+- Proficient language knowledge in Spanish (ALANA is incorporated in Peru and bound to the local laws)","1,453",2.5,0.25,50.00%,90.00%,"1,259","1,259",,,
+Organizational/ Structural Design,Infrastructure & Strategy,"What does it take to create/ maintain/ innovate on ALANA's organizational/ structural design?
+- A general understanding of the existing structure
+- A thorough analyzation of the current organization and its failing/ weak elements
+- An inquiry with the DAO members about satisfaction/ dissatisfaction - a set of interviews or a questionnaire that identifies the needs for the community
+- Definition of new roles or branches according the evaluated data points (polls, questionnaires, interviews, etc.)
+- A clear definition of roles and/ or additional branches
+- A clear argument for or against certain roles/ branches
+- Establish clear expectations if new roles or branches are added
+- Designing a flow in a visual format that bridges the gap from text to visual mind and clearly shows the benefits
+- Create a DAO Proposal for the new strucutre in a text format supported by visual elements
+- If the DAO proposal is accepted establish the changes to the ALANA organization onchain with HatsProtocol x Unlock Protocol
+- Officially announce the changes and prepare according copy for it
+- Help guide people towards the established changes (can be personal calls, public sessions like livestreams or answering questions in the chats)","What tools are required?
+- Access to Discord
+- Access to Figma
+- Access to Google Sheets
+- Access to HatsProtocol
+","1,453",2.5,0.25,90.00%,90.00%,"2,266","2,266",0,"2,266",
+"Implementing & Execute a succefull DAO Proposal
+
+*Example calculation based on the Nucleus Guardian role description",Infrastructure & Strategy,"What does it take to implement and execute a successful DAO Proposal?
+- An entry in the Gitbook or equivalent documentation platform if it matters to the overall organization
+- Receive legal confirmation for the successful implementation
+- Enact all suggested steps from the proposal to ensure succesful execution (can be many don't have to be)","What tools are required?
+- Access to Gitbook or similar
+- Access to Google Sheets
+- Access to necessary secondary contact","1,453",2.5,0.25,30.00%,70.00%,587,587,0,,
+"Research for  tools/ software
+
+* Example calculation based on research on Fileverse, a blockchain based storage and distribution platform","Infrastructure & Strategy, ALANA AI","What does it take to research tools or software for the ALANA community?
+- Identify a need
+- Define requirements
+- Consider constraints
+- Evaluate competitive tools and measure them according to community needs
+- Create a small presentation for the community and propose your elected tool or software
+- Make sure to be clear on benefits and ""risks"" for the community and what the tool or software exactly will solve
+- If consensus is reached, lead the implementation and testing phase
+- If testing is successful, write up a piece of documentation that helps community members to engage
+","What tools are required?
+- Access to Word or similar
+- Access to documentation","1,453",2.5,0.25,15.00%,90.00%,378,378,0,378,
+"Financial Reporting for Products
+
+* Example calculation based on ALANAmagazine","Infrastructure & Strategy, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld","What does it take to do Financial Reporting for ALANA Products?
+- Gather product-specific financial data in collaboration with the relevant departments and extract from diverse data-collecting platforms
+- Organize historical data and check for validity
+- Create a product-specific income statement and develop a product balance sheet as well as a cash flow statement
+- Perform financial analysis and forecasts
+- Maintain a regular reporting schedule
+- (Inform about regulatory compliance)
+- Implement Internal Controls
+- Publish financial information (according to legal entity) 
+- Refine reporting processes
+- Leverage innovative technologies to enhance the process","What tools are required?
+- Google Sheets or similar
+- Dework or similar
+- Token Contract access
+- Stripe","1,453",1.5,0.5,38.00%,75.00%,580,580,,,
+Writing Interviews/ Feedback Initiatives,"Infrastructure & Strategy, ALANA AI","What does it take to write interviews and run feedback initiatives?
+* Recommended reference: https://www.youtube.com/watch?v=f_tGpfXX2ww
+
+- Research the interviewee and topic thoroughly
+- Develop a list of key questions (open-ended, probing, follow-up)
+- Coordinate an interview time
+- Develop an incentive idea for the interviewee
+- Create a logical structure for the interview consisting of an introduction (brief and purpose) and a question structure (start with broader questions to more specific ones)
+- Practice active listening - allow for pauses and silences to give the interviewee time to think as well as maintain an organic flow
+- Ensure the interviewee is really heard and consider final thoughts
+- Review and organize your notes
+- Identify key quotes and themes
+- Evaluate and compare responses
+- Structure the written piece in a compelling narrative format
+- Suggest active resolutions from the provided feedback results","What tools are required?
+- Access to Word or similar
+- Access to a meeting coordination tool such as Calendly or Lettucemeet
+- Access to a form designer tool like deform","1,453",2.5,0.5,30.00%,84.00%,769,769,0,769,
+"Newsletter Writing
+
+* Example calculation based on the current ALANA NewsFlash","Infrastructure & Strategy, ALANA AI","What does it take to write a newsletter for ALANA?
+- Duplicate the template on Mailchimp
+- Research in three different categories: LEARN, CREATE and BUILD
+- Additional categories are announcements, events, resources and a creator feature
+- Reach out to a creator and receive from them pictures, bio and links
+- Add the graphic from the most recent mirror article 
+- Write short content for each selected topic and link it
+- Schedule the sending time
+- (Automatic social distribution including dedicated graphics)","What tools are required?
+- Mailchimp
+- Photoshop or similar",200,0.25,2,45.00%,70.00%,99,99,0,99,
+"Educational Article Writing + Social Media Content Writing
+
+* Example calculation based on mirror.xyz articles","Infrastructure & Strategy, Onboarding, ALANA AI","What does it take to write an educational article?
+We recommend following the 7 steps of ""The Art of Explanation"" by Ros Atkins as it leads to convincing results.
+- Set-up:Ask the right questions about your audience and what exactly you want them to understand.
+- Find the information: Gather initial information to understand the topic better and identify key points to cover
+- Distil the information: Break it down to the most necessary parts of information needed and remind yourself of the original purpose of this article
+- Organize the information: All information comes in sections, make sure the sections are ordered in a meaninful way to convey the core of your story 
+- Link the information: Link the information for credibility and literally but also ensure it works in alignment with The ALANA Project brand and brand voice
+- Tighten: Take a step away from your article and make sure you are using clear and simple examples to explain. This is like a last step over analyzation to make sure the content is delivered in the best way possible.
+- Delivery: Create befitting visuals and deliver in multiple formats across ALANA's socials.","What tools are required?
+- Google Sheets or similar
+- Google Docs or similar
+- AI Generator for images
+- mirror.xyz access
+- Social media accounts for outreach
+ ","1,453",0.25,2,60.00%,80.00%,628,628,,,
+"Writing Product Specific Documentation
+
+* Example calculation based on ALANAmagazine","Infrastructure & Strategy, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld","What does it take to write product-specific documentation in ALANA?
+- If you don't know the ins and outs of the specific product you are supposed to write documentation about, make sure to first inform yourself. You can do so by contacting a responsible Nucleus Guardian.
+- Set up a meeting and prepare a concise but well-thought-through questionnaire to cover all ground.
+- Write comprehensive documentation for the specific product in ALANA. Include all topics of relevance.
+- Have the responsible Nucleus Guardian proofread your work and at least one other member of ALANA to ensure accuracy.
+- Hand over the documentation to the Brand Identity & Socials team for implementation.","What tools are required?
+- Access to Word or similar
+- Access to docs/ GitHub or the website manager","1,453",2.5,0.5,35.00%,90.00%,961,961,,,
+"Writing Important General Documentation
+
+* Example calculation based on the ALANA Manifesto",Infrastructure & Strategy,"What does it take to write general documentation for ALANA? 
+We recommend that Nucleus Guardians only complete this task, using Ros Atkins's ""The Art of Explanation"" as a guide.
+- A holistic understanding of the entirety of The ALANA Project or one of its specific branches.
+- Set-up: Ask the right questions about your audience and what exactly you want them to understand.
+- Find the information: Gather initial information to understand the topic better and identify key points to cover
+- Distil the information: Break it down to the most necessary parts of information needed and remind yourself of the original purpose of this article
+- Organize the information: All information comes in sections, make sure the sections are ordered in a meaninful way to convey the core of your story 
+- Link the information: Link the information for credibility and literally but also ensure it works in alignment with The ALANA Project brand and brand voice
+- Tighten: Take a step away from your article and make sure you are using clear and simple examples to explain. This is like a last step over analyzation to make sure the content is delivered in the best way possible.
+- Delivery: Create befitting visuals and deliver in multiple formats across ALANA's socials.","What tools are required?
+- Access to Word or similar
+- Access to docs/ GitHub or the website manager","1,453",2.5,0.5,50.00%,90.00%,"1,373","1,373",0,"1,373",
+"An ALANA Livestream/ Podcast
+
+* Example calculation based on the idea of an ALANAmagazine Podcast","Onboarding, ALANAmagazine, ALANA AI","What does it take to hold an ALANA Livestream/ Podcast?
+- Reach out to the person of interest for the session and check their interest and availability
+- Send a follow-up email to request their headshot (graphic) and bio (YouTube description box)
+- Set up the graphics for the event in collaboration with the branding team
+- Schedule the event itself on the different social media channels in collaboration with the social media team (help with the promotion of it by sharing)
+- Set up a script sheet with the interview questions
+- Have a briefing meeting with them to inquire how to best represent their interests as well
+- Set up the Livestream platform 
+- Brief meeting/ conversation to inquire satisfaction of the interviewee","What tools are required?
+- Access to Google Sheets
+- Access to ALANA Figma
+- Access to Streaming Platform
+- Access to Streamlabs","1,453",1.5,1.5,60.00%,70.00%,"1,098","1,098",0,"1,098",
+"Event Managing
+
+* Example calculation based on previous experiences","Onboarding, ALANAmagazine","What does it take to hold an ALANA Livestream/ Podcast?
+- Work together with the host to reach out to potential guests and/ or co-hosts for the session and check their interest and availability
+- Send a follow-up email to request their headshot (graphic), bio (YouTube description box) and social links (we have a template for this)
+- Set up the graphics for the event in collaboration with the branding team
+- Schedule the event itself on the different social media channels in collaboration with the social media team (help with the promotion of it by sharing)
+- Set up the Livestream platform and send the link to everyone.
+- Brief meeting/ conversation to inquire about the satisfaction of all participants","What tools are required?
+- Access to Google Sheets
+- Access to ALANA Figma
+- Access to Streaming Platform
+- Access to Streamlabs","1,453",0.5,2,50.00%,70.00%,763,763,,,
+"Event Hosting/ Moderation
+
+* Example calculation based on previous experiences","Onboarding, ALANAmagazine","What does it take to moderate/ host an event for ALANA?
+(This task requires a close collaboration with the Event Manager!)
+- Work together with the manager to reach out to potential guests and/ or co-hosts for the session and check their interest and availability
+- Set up a script sheet with the interview questions 
+- Reshare the official announcements on socials
+- Have a briefing meeting with them to inquire how to best represent their interests as well","What tools are required?
+- Access to Google Sheets
+- Access to ALANA Figma
+- Access to Streaming Platform
+- Access to Streamlabs","1,453",0.5,2,23.00%,70.00%,351,351,0,351,
+"Webinar
+
+* Example calculation based on previous experiences","Onboarding, ALANA AI","What does it take to hold an ALANA Webinar?
+- Investigate a topic of interest with the community.
+- Look for potential partners to bring in additional audiences and provide exposure to them.
+- Prepare the Webinar flow and share it with the co-hosts. Get their confirmation/ approval.
+- Set up the graphics for the event in collaboration with the branding team.
+- Schedule the event itself on the different social media channels in collaboration with the social media team (help with the promotion of it by sharing).
+- Have a brief meeting with the co-host.
+- Set up the Livestream platform.
+- Brief meeting/ conversation to inquire satisfaction of the co-host/ partner.","What tools are required?
+- Access to Milanote
+- Access to ALANA Figma
+- Access to Streaming Platform
+- Access to Streamlabs","1,453",2,2.5,70.00%,70.00%,"1,922","1,922",0,"1,922",
+"Onboarding new Community Members
+
+* Example calculation based on previous experiences",Onboarding,"What does it take to onboard new community members to ALANA?
+- Fundamental knowledge of The ALANA Project and its workings.
+- Greet new members in Discord/ Telegram and engage with them actively to provide guidance.
+- If they have gone through the different steps of onboarding, offer more assistance if they are interested in joining a branch.
+Potentially, a one-on-one call (Nudleus Guardian) will be made to determine their alignment and the best-suited branch for them.
+- Maintain a relationship with the onboarded members and keep engaging with them.
+- Lend members a hand in resharing their content while offering them our to share as well.","What tools are required?
+- Access to Discord/ Telegram","1,453",0.5,0.5,15.00%,90.00%,118,"1,530",0,118,"""Final Result"" is for onboarding in one-on-one calls with 20 new contributors to The ALANA Project (could be group calls as well)"
+"Community Protection Patrol
+
+* Example calculation based on previous experiences",Onboarding,"What does it take to Patrol the ALANA community servers (Discord/ Telegram)?
+- Regularly check the status of security protocol bots.
+- Periodically scan channels for any suspicious activity such as shilling or sharing malicious links.
+- Utilize bot commands after manual inspection to identify and remove any offending content.
+- Maintain a mod log channel to document all actions taken against users.
+- Keep a keen eye out for new potential risk and scams so to alert the community to vigilent.","What tools are required?
+- Access to Discord Mod permissions
+- Access to Wick Bot
+- Access to Mee6 bot
+- Access to Carl bot","1,453",2.5,0.25,45.00%,65.00%,701,701,0,701,4 times a year payout schedule if done properly!
+"Communication Platform Maintainance
+
+* Example calculation based on the re-design of the Discord experience","Onboarding, Brand Identity & Socials","What does it take to re-design or maintain existing community platforms?
+- Understand the pain points of the current experience and ask for help from the Brand Identity & Socials team to understand the target audience even better.
+- Gather insights from the current audience via a survey and evaluate feedback.
+- With the new data in hand, plan the layout and user flow of the new experience or adjustments in Milanote, Figma, or similar.
+- Adjustments or maintenance can also include security updates or the integration of new automation/ bots and might require additional skills and understanding.
+- Open a public conversation about the new experience and gather feedback.
+- Refine the experience with the user feedback gathered and implemented. 
+- Implement the adjustments as planned.
+- Keep refining as needed and conduct frequent audits to ensure seamless user flow.","What tools are required?
+(We are currently transitioning the community to Telegram. This would be a great example.)
+- Planning tools like Milanote
+- Mock-up tools like Figma
+- Admin Access to the platform in question","1,453",1.5,1.5,10.00%,70.00%,183,183,0,183,
+"Design, Implement, Innovate and Maintain Onboarding Experiences
+
+* Example calculation based on the ALANA Web3 LEARNER Journey","Onboarding, Brand Identity & Socials","What does it take to design, implement, innovate, and maintain onboarding experiences for ALANA?
+- Understand the target audience in collaboration with the Brand Identity & Socials team.
+- Refine expectations and user flow and design a survey to gather insights from ALANA's existing community.
+- Create/ design a mockup or plan for the onboarding experience.
+- Open a public conversation about the new experience and gather feedback.
+- Refine the experience with the user feedback gathered and implemented. If needed hand over to the website team after receiving approval from the Brand Identity & Socials team.
+- Test the journey with the core ALANA audience before publishing it fully.
+- Keep refining as needed and conduct frequent audits to ensure seamless user flow.","What tools are required?
+(Various tools can be researched and used for this, we have used zealy before and will now design a custom experience directly implemented into our website.)
+- Planning tools like Milanote
+- Mock-up tools like Figma","1,453",2,1.5,70.00%,70.00%,"1,495","1,495",0,"1,495",
+"Social Media Management for one channel
+
+* Example calculation based on previous experiences",Brand Identity & Socials,"What does it take to manage one social media channel for ALANA?
+- Plan content by observing the overall ongoing in ALANA (sometimes also short notice)
+- Create a content calendar 
+- Manage correct timing of posts and fix common errors, final edits, social media planning and plan execution, requests ""Content Creator"" for relevant ads and assets","What tools are required?
+- Social Media platform access 
+- Milanote access for planning
+- Figma access for graphic adaptions and brand assets for light content like stories","1,453",1.2,1.5,15.00%,70.00%,206,206,0,206,
+"Social Media Content Creation
+
+* Example calculation based on previous experiences",Brand Identity & Socials,"What does it take to create content for ALANA's social media channels?
+(Here, the Battery Life Bar value is essential to ensure fair output values. We recommend to use 5%+ for a still graphic and 15%+ for videos.)
+- Utilize existing content pillars and themes to develop content—the same counts for the brand identity.
+- Use the platform manager to tap into trending topics and hashtags in the ALANA niches.
+- Write engaging captions and copy for posts while scripting and storyboarding video content.
+- Film the video content and source images if needed (or use AI tools to generate them).
+- Design final graphics and edit photos for still image posts. Use video editing software for video posts. Add captions and subtitles to videos. Incorporate branded elements and logos.  Add music, sound effects, and voiceovers to videos as needed.
+- Develop eye-catching thumbnails. 
+- Resize and format content for different social platforms.
+- Add to the content calendar (depends on the amount of content).","What tools are required?
+- Google Docs or similar
+- Access to Milanote
+- Access to Figma
+- Adobe Illustrator
+- Midjourney, Comfy UI or similar","1,453",1,1,5.00%,70.00%,51,51,0,51,
+"Brand Collaboration/PR
+
+* Example calculation based on previous experiences","Brand Identity & Socials, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld","What does it take to develop Brand Collaborations with ALANA?
+- Either respond to brand and company inquiries about collaborations or target specific brands from within the ALANA Brand Identity & Socials team.
+- For either case, research the brands and gather information to present to the team. Thoroughly analyze brand alignments, benefits, and risks.
+- Responds via social platforms or email and set up a meeting to discuss details of a possible collaboration.
+- Take the meeting and draft a collaboration agreement that both parties need to sign to make it valid.
+- Involve additional teams for the execution if neccessary.
+- Launch the campaign.","What tools are required?
+- Email Access
+- Calendly or similar
+- Google Docs or similar
+- Access to Milanote
+- Access to Figma
+- Adobe Illustrator
+- Midjourney, Comfy UI or similar","1,453",2,0.5,45.00%,70.00%,572,572,0,572,
+"Brand Identity Kit Maintainance
+
+* Example calculation based on the partial evaluation of the existing brand identity kit",Brand Identity & Socials,"What does it take to maintain and add value to the existing ALANA Brand Identity Kit?
+- Conduct periodic audits of brand usage across all platforms to ensure compliant usage of branded assets
+- Update visual elements to keep the brand fresh and relevant.
+- Refine messaging to align with evolving company values and goals.
+- Create new templates for emerging digital platforms as needed. The same applies to logos, colors, and typographic elements.
+- Use a feedback system to report brand inconsistencies and conduct regular branding workshops for members and partners.
+- Use data insights to refine and improve brand guidelines.","What tools are required?
+- Access to Figma
+- Adobe Illustrator
+- Midjourney, Comfy UI or similar
+","1,453",0.25,2,10.00%,90.00%,147,147,,,
+"Branded Asset Creation
+
+* Example calculation based on previous experiences",Brand Identity & Socials,"What does it take to create Branded Assets for ALANA?
+(This is ONLY for crafting truly new elements; don't use it for maintenance procedures or when utilizing existing assets.)
+- Use the existing brand identity kit as a reference to build upon it.
+- Use the Figma space to craft new elements as needed.","What tools are required?
+- Access to Figma
+- Adobe Illustrator
+- Midjourney, Comfy UI or similar
+","1,453",0.25,2.5,10.00%,90.00%,180,180,,,
+"Website Maintainance/ Updates
+
+* Example calculation based on the ALANAmagazine cover competition website","Brand Identity & Socials, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld","What does it take to keep the existing website(s) for ALANA accessible and in excellent condition?
+- Perform regular website maintenance and updates, including bug fixes, security patches, content updates, and minor enhancements.
+- Add sub-pages when needed.
+- Implement new functionalities as they are available and make sense. ","What tools are required?
+- GitHub Team Access
+- Access to Figma
+- Access to other required tools or resources 
+","1,453",0.25,2,10.00%,90.00%,147,147,0,147,
+"Product Website Design
+
+* Example calculation based on the ALANAmagazine website","Brand Identity & Socials, ALANAmagazine, ALANA AI, ALANAboutique, ALANAworld","What does it take to design & mock-up a product website for ALANA?
+- Define website goals and target audience and factor in the overall ALANA brand identity.
+- Outline content requirements for each page and sub-pages.
+- Sketch rough layouts for the homepage and sub-pages and factor in the user flow and navigational structure.
+- Use the existing brand identity for color schemes and typographic elements. Create consistent UI elements (buttons, forms, icons).
+- Design hover states and micro-interactions. Plan for any interactive features (e.g., product galleries, FAQ accordions).
+- Design high-fidelity prototypes (mock-ups) for the homepage and sub-pages in Figma.
+- Don't forget to create mockups for responsive layouts (desktop, tablet, mobile)
+- Write compelling copy for each page and source or create product images and graphics. Develop any necessary diagrams or infographics.
+- Gather feedback from community members and refine the mock-up according to the feedback received.
+- Prepare final mock-ups for handoff to development team.","What tools are required?
+- GitHub Team Access
+- Access to Figma
+- Access to other required tools or resources 
+","1,453",0.25,2.5,90.00%,90.00%,"1,618","1,618",0,"1,618",
+"ALANAmagazine Content Curation
+
+* Example calculation based on previous experiences",ALANAmagazine,"What does it take to curate content for ALANAmagazine? 
+- Ensure alignment with the magazine's theme
+- Understand the preferences and interests of your audience
+- Compile a list of reliable sources, including blogs, articles, and industry topics of interest
+- Provide your own insights or summaries to enhance the curated content and prepare for meeting presentations
+- Structure the content flow in a way that is engaging and easy to navigate for readers","What tools are required?
+- Google Sheets or similar (https://docs.google.com/spreadsheets/d/1-yflUwSJk3rc4LRGuUVjDcbCnjExIWCkmU68WqizC78/edit?usp=sharing)","1,453",0.25,2.5,40.00%,84.00%,537,537,,,Gets multiplied by the different articles and sections in the ALANAmagazine.
+"ALANAmagazine Editorial Curation and Management
+
+* Example calculation based on an AI tutorial curation",ALANAmagazine,"What does it take to curate and manage a Fashion Editorial for ALANAmagazine?
+(Every ALANAmagazine has four fashion editorials. The Battery Life Bar value is essential to ensure fair output values. We recommend using 50%+ for AI Editorials and 80%+ for 3D Editorials.)
+- Develop the editorial concept and theme with the current edition's theme in mind.
+- Create a mood board to visualize the editorial direction. 
+- Submit your credentials as art directors to the ALANAmagazine team, including bio, links, and a high-res portrait image of yourself (preferably B/W).
+- For 3D Editorials: Create a 3D environment that will serve as the rendering environment for the fashion editorial.
+- For 3D Editorials: Create the model or models you aim to use for the final renderings.
+- A timeline needs to be established depending on the submission type (AI or 3D files).
+- Provide all necessary information to the ALANAmagazine website team so a submission page can be established containing all necessary indications for the community to submit their work. 
+- Upon the submission deadline, ensure a fair selection process for the winning submissions.
+- For AI Editorials: Artdirect the final curation list and provide indications for lighting, color grading, and any other type of formatting to the ALANAmagazine team.
+- For 3D Editorials: Refit and implement all outfits into the 3D environment for rendering. Artdirect the final curation list and provide indications for lighting, color grading, and any other type of formatting to the ALANAmagazine team.","What tools are required?
+- Access to Milanote
+- Access to Website submissions
+- Blender or similar
+- CLO 3D, Marvelous or similar
+- Figma or similar
+- Photoshop or similar","1,453",0.25,3,50.00%,90.00%,850,850,,,
+ALANAmagazine Contributor Management,ALANAmagazine,"What does it take to manage a contributor for ALANAmagazine? 
+- Actively seek out new voices to expand the diversity of perspectives (according to curated content)
+- Establish clear expectations for content quality, formatting, deadlines, etc.
+- Have contributors sign an agreement outlining terms, rights, compensation, etc.
+- Appoint an editor to work closely with each contributor
+- Provide a clear process for contributors to submit article drafts
+- Work with contributors to improve content quality through multiple rounds of feedback
+- Hold contributors accountable to agreed-upon deadlines to maintain the publication schedule
+- Check in with contributors frequently to address questions and provide support","What tools are required?
+- Google Sheets or similar
+- Calendly
+- Video Call Software","1,453",0.25,1.5,30.00%,50.00%,153,153,0,,
+ALANAmagazine Interview Coordination,ALANAmagazine,"What does it take to manage and coordinate an interview for ALANAmagazine?
+- Determine the person to interview along the content curation sheet
+- Gather information about the interviewee to formulate insightful questions and understand their perspective
+- Contact the interview subject to request an interview, providing details about the magazine and the purpose of the interview
+- Develop a list of questions that guide the conversation while allowing flexibility for organic discussion
+- Ensure you have the necessary recording devices, note-taking tools, and any other equipment needed for the interview
+- Capture the interview either through recording (with permission) or by taking detailed notes to reference later
+- After the interview, reach out if you need further clarification on any points discussed","What tools are required?
+- Google Sheets or similar
+- Video Recording Software (e.g. OBS)
+- Video Call Software
+- Social media accounts for outreach","1,453",0.25,0.5,40.00%,75.00%,131,131,,,
+"ALANAmagazine Article Writing
+
+* is already incentivized with $0.15/ word",ALANAmagazine,"What does it take to write an article for ALANAmagazine?
+- If the article is based on a previously recorded interview, convert the conversation into text for easier reference and to facilitate the writing process
+------
+- If the article is not a recorded interview, select a relevant topic from the content curation sheet
+- Gather initial information to understand the topic better and identify key points to cover
+- Compile a list of credible sources, including books, articles, interviews, and expert opinions
+- If applicable, include images, infographics, or other visuals to enhance the content and break up text
+- Write the first draft based on your outline, including an engaging introduction, body paragraphs, a conclusion and potentially direct quotes
+- Review the draft for clarity, coherence, and flow, making necessary revisions to improve the overall quality
+- Check for grammatical errors, typos, and formatting issues to ensure the article is polished and professional
+- Share the article with an editor or peer for constructive feedback before final submission
+- Make any final adjustments based on feedback and submit the article according to the magazine's guidelines","What tools are required?
+- Google Sheets or similar
+- Google Docs or similar
+- Social media accounts for outreach","1,453",0.25,2.5,60.00%,80.00%,767,767,,,
+ALANAmagazine Short-form Content Writing,ALANAmagazine,"What does it take to write short-form content for ALANAmagazine?
+- Along the content curation sheet, pick a topic
+- Gather relevant information and data to support the article, ensuring it is accurate and credible
+- Organize the main points and structure the short-form content logically, keeping it brief and to the point
+- If applicable, include images, infographics, or other visuals to enhance the content and break up text
+- Revise the draft to eliminate unnecessary words and ensure the message is clear and impactful
+- Check for grammatical errors, typos, and formatting issues to ensure professionalism
+- Send the short-form content to an editor or peer for feedback before finalizing it for publication","What tools are required?
+- Google Sheets or similar
+- Google Docs or similar
+- Social media accounts for outreach","1,453",0.25,2,30.00%,80.00%,314,314,,,
+ALANAmagazine Fact-Checking & Content Editing,ALANAmagazine,"What does it take to fact-check and edit content for ALANAmagazine?
+- Ensure the article arrives with sources provided, if not, check back with the original author
+- Confirm the sources are correct and reliable/ accurate
+- Read the article and check for any claims made; if anything is unclear confirm with the original author
+- Provide feedback to the original author and ask for changes if applicable 
+- Read the article thoroughly to understand its content, structure, and intent
+- Ensure the writing is clear and consistent in tone, style, and terminology
+- Assess the organization of the article, ensuring it has a logical flow with a strong introduction, body, and conclusion
+- Remove any redundant or irrelevant information that does not contribute to the main message
+- Ensure visuals fit the aesthetic and quality standard of the magazine and enhance the article they are paired with
+- Check for grammatical errors, typos, and punctuation mistakes using tools and manual proofreading
+- Offer constructive feedback to the writer, highlighting strengths and areas for improvement
+- Implement all necessary changes and prepare the article for publication, ensuring it meets the magazine’s standards
+- Hand the article over to the layouter of the magazine","What tools are required?
+- PDF Reader and annotation tool
+- Google Docs or similar","1,453",0.25,2,70.00%,80.00%,732,732,,,
+ALANAmagazine Layout Design,ALANAmagazine,"What does it take to layout ALANAmagazine?
+- Ensure the overall design is in complete alignment with The ALANA Project branding
+- Ensure the layouter has advanced knowledge on utilizing Adobe InDesign for layouting the magazine
+- Develop a style guide that includes fonts, colors, and design elements to ensure consistency throughout the magazine
+- Design a grid system to organize content effectively, balancing text and images for optimal readability
+- Use headings, subheadings, and varying font sizes to guide readers through the content and highlight important information
+- Ensure body text is legible by choosing appropriate font sizes, line spacing, and paragraph breaks
+- Strategically use white space to enhance the layout, making it visually appealing and easier to navigate
+- Select high-quality images and graphics that complement the text and enhance the overall aesthetic (if the quality standard is off, utilize AI enhancer tools to adapt)
+- Adjust layouts for print and digital versions, considering factors like interactivity for digital formats and bleed for print.
+- Ensure all files are set to the correct dimensions, resolution (300 dpi), and color mode (CMYK) for printing.
+- Hand over a draft file for proofreading, ensuring all elements are aligned and visually cohesive.
+- Export the final layout in appropriate formats (PDF for print, interactive formats for digital) and distribute as needed.","What tools are required?
+- InDesign
+- PDF Reader
+- Photoshop
+- AI Enhancer","1,453",0.25,2.75,85.00%,85.00%,"1,260","16,377",,,
+"ALANAmagazine Proof Reading 
+
+* incentivized per round",ALANAmagazine,"What does it take to proofread ALANAmagazine?
+FYI, the person responsible for the original article should not be proofreading it!
+3 to 5 people are required to do this.
+
+- 124 pages of patience and eagle-eyed attention","What tools are required?
+- PDF Reader and annotation tool","1,453",0.25,1.5,50.00%,65.00%,331,"4,297",,,
+"ALANAmagazine Media Kit Creation
+",ALANAmagazine,"What does it take to design the Media Kit for ALANAmagazine?
+- Determine the goals of the media kit, such as attracting advertisers, informing media contacts, or promoting brand partnerships
+- Compile key details about the magazine, including its mission, audience demographics, and unique selling points
+- Clearly describe the magazine's content types, distribution channels, and advertising options available
+- Provide and compile statistics on readership, social media following, and engagement metrics to demonstrate the magazine's reach
+- Incorporate high-quality images and design elements that reflect the magazine's branding and aesthetic
+- Include brief bios and photos of key team members, such as editors and contributors, to personalize the kit
+- Use a professional design tool or template to create an attractive and easy-to-navigate layout
+- Proofread the content for accuracy and clarity, ensuring all information is up-to-date and relevant
+- Share the media kit digitally (PDF or online link) with team members who will be responsible for sponsor acquisitions and partnerships","What tools are required?
+- Photoshop or similar
+- Figma, InDesign or similar
+- PDF Creator
+- AI enhancer/ AI creation Tools","1,453",0.25,2,50.00%,75.00%,490,,,,
+"ALANAmagazine Partnership/ Sponsor Acquisition & Management
+
+* one-off
+* 10% of the sponsorship money goes to the responsible contributor",ALANAmagazine,"What does it take to reach out to reach out to potential sponsors and partners for ALANAmagazine?
+- Research and select companies or brands that align with your magazine’s values and audience
+- Utilize the Media Kit to demonstrate the value of your magazine to potential sponsors
+- Write a clear and concise email or letter that outlines the sponsorship opportunity, including what you are asking for and what you can offer in return
+- Emphasize how the partnership can benefit the sponsor, such as increased brand exposure and access to your audience.
+- If you don’t receive a response, send a polite follow-up email to remind them of your proposal and express your interest in discussing it further
+- Be prepared to discuss different sponsorship levels and tailor your offerings to meet the sponsor's needs
+- Keep in touch with potential sponsors, providing updates on your magazine and any relevant opportunities for collaboration
+- After securing sponsorships, track the performance of the partnership and report back to sponsors on the outcomes, reinforcing the value of their investment","What tools are required?
+- Video Call Software
+- Social media accounts for outreach
+- Google Docs (Sponsor Sheet)","1,453",2,0.5,35.00%,65.00%,331,331,,,
+"Managing Community Competitions
+
+* Example calculation based on the ALANAmagazine community competitions (cover)
+* community contest",ALANAmagazine,"What does it take to manage and organize a community competition?
+- Define general competition parameters, such as the theme or subject, image specifications and potential restrictions
+- Establish timeline, start, end, judging period, announcements
+- Create competition rules, including judging criteria and 
+- (Forming of the judging panel)
+- Develop the submission platform and provide details to the developer (run tests, check for user-friendliness)
+- Create marketing materials in collaboration with Identity Engineers
+- Manage submissions, organize qualifying submissions and make them easily accessible for judges/ team and send confirmation mails to participants
+- (Manage judges and their evaluations)
+- Notify winners, announce results on social media and prepare information for the ALANAmagazine edition
+- (Thank judges)","What tools are required?
+- Figma
+- Milanote","1,453",0.5,2.75,50.00%,75.00%,708,708,,,
+"ALANAmagazine Graphic Design
+
+* editing and enhancing of existing images, creation of new graphics and images for articles",ALANAmagazine,"What does it take to do graphic design/ retouching work for ALANAmagazine?
+- create graphics from scratch 
+- retouch existing or submitted imagery to make it fit the layout","What tools are required?
+- Photoshop or similar
+- Illustrator or similar
+- AI enhancer/ AI creation","1,453",0.25,1.75,30.00%,75.00%,262,"3,400",,,
+"ALANAmagazine AR Filter Creation
+(difficulty - challenging)",ALANAmagazine,"What does it take to create an AR Filter for ALANAmagazine?
+- Concept & References
+- Basic Shape Creation
+- Refining the Shape
+- Combining Elements
+- Adding Details
+- Retopology or Topology baking
+- Texturing
+- potentially weight painting/ rigging","What tools are required?
+- Blender, Cinema 4D, Zbrush, etc.
+- Substance Designer/ Painter or Quixel","1,453",0.5,2,65.00%,70.00%,"1,157","1,157",0,,
+"Create ALANAmagazine Product Trailer
+
+*Example calculation based on the ALANAmagazine Trailer",ALANAmagazine,"What does it take to put together a high-end product trailer for ALANA?
+- Communicate with the ALANAmagazine team and the Brand Identity team about the visuals that can and should be utilized according to the going theme.
+- Gather the finalized graphics for the cover, side, and back from the Brand Identity/ ALANAmagazine layouter directly.
+- Blockout and build the entire scene in Blender.
+- Define lighting, apply textures, and buy additional assets if necessary.
+- Create pre-renders and discuss them with the Brand Identity and ALANAmagazine (in that order). Adjust if necessary.
+- Finalize at least five camera angles and motions as well as different angles for stills and render.
+- Start the communication with the video editor and produce the first draft in at least two ratios (Reels & YouTube).
+- After the first draft communicate with the Brand Identity and ALANAmagazine team. Adjust if necessary.
+- Finalize renders and send them off to the two teams.","What tools are required?
+- Blender
+- Texturing
+- Asset Library
+- Sounds
+- Video Editing","1,453",2.5,3,60.00%,85.00%,"2,853","2,853",0,"2,853",
+"ALANAmagazine Production Management
+
+* Pre-production of the physical magazine",ALANAmagazine,"What does it take to pre-produce the physical magazine?
+- Create and manage the production schedule, working backwards from the distribution date
+- Develop a detailed flatplan or page-plan for the issue
+- Coordinate with editorial and advertising teams to gather all content and assets
+- Prepare files for printing, including color profiles and resolution checks
+- Research different production facilities, compare prices and qualities
+- Liaise with the printing facility to ensure proper specifications and quality
+- Conduct press checks to verify print quality at the beginning of the press run
+- Coordinate with distribution/ storage services for packaging and delivery of the printed magazines","What tools are required?
+- Google Sheets or similar
+- InDesign","1,453",0.25,2,35.00%,75.00%,601,601,,,
+"ALANAmagazine Sales Management B2B
+
+* selling in bulk to stores for example
+* 10% of the sponsorship money goes to the responsible contributor",ALANAmagazine,"What does it take to reach out to potential B2B Clients for ALANAmagazine?
+- Identify potential B2B clients: bookstores, libraries, and specialty retailers.
+- Create a targeted pitch highlighting ALANAmagazine's unique value proposition. The ALANAmagazine Media Kit can be used as a resource here.
+- Develop bulk pricing and distribution options.
+- Build a database of decision-makers at potential B2B clients.
+- Craft concise email templates for initial contact. Nonetheless, a multi-channel approach is recommended.
+- Send personalized introductory emails to potential B2B clients. Follow up by phone to discuss bulk purchasing opportunities.
+- When possible, arrange meetings or store visits to showcase ALANAmagazine.
+- Negotiate bulk order agreements and payment terms. 
+- Create a distribution plan, including delivery schedules.
+- Implement a system for tracking orders and managing inventory. 
+- Provide regular updates on new issues and special editions. 
+- Offer promotional materials to help B2B clients market ALANAmagazine.
+- Gather feedback to improve the magazine and distribution process.","What tools are required?
+- Video Call Software
+- Social media accounts for outreach
+- Google Docs (Sponsor Sheet)
+- Inventory software
+- Access to promotional resources","1,453",2,0.5,35.00%,65.00%,331,331,,,
+"ALANAmagazine Distribution Management
+
+* Distribution of the physical magazine",ALANAmagazine,"What does it take to manage the distribution of the physical magazine?
+- Implement a system for tracking orders and managing inventory.
+- Check automated emails from the website form
+- Print labels
+- Ask for collection by the shipping service","What tools are required?
+- Google Sheets or similar
+- Delivery Service Access (UPS, DHL, etc.)
+- Access to the Multi-sig Wallet
+- Access to Unlock Lock
+- Access to Stripe Service
+- Labeling Tool & Software","1,453",0.25,3,15.00%,65.00%,184,"2,394",,,Values for one Season of ALANAmagazine
+"ALANAboutique Seasonal Content Curation
+
+* Example calculation based on the overall exhibition planning of the virtual ALANAboutique space",ALANAboutique,"What does it take to curate a season for ALANAboutique? 
+- Define the season's theme and overall narrative and ensure alignment with ALANA's audience.
+- Develop a curatorial statement outlining the vision.
+- Create a timeline for the season, including individual exhibition dates if needed.
+- Research and identify artists/ brands whose work aligns with the season's theme.
+- Review and select specific artworks for each exhibition to generate some mock up graphics (2D)
+- Craft all of the above in a streamlined proposal for an ALANAboutique season.","What tools are required?
+- Access to Milanote","1,453",0.25,2.5,95.00%,85.00%,"1,291","1,291",,,
+"ALANAboutique Individual Exhibition Curation
+
+* Example calculation based on curating an educational space in ALANAboutique. When planning multiple spaces, the ""average multiplier"" wouldn't take effect as every space is unique.",ALANAboutique,"What does it take to curate an individual exhibition space for ALANAboutique?
+(ALANAboutique consists of individual exhibition spaces. Some are unique and require more dedicated development such as educational spaces. We recommend setting a battery life bar value of 55%. For shopping spaces we recommend setting a lower value for about 35%.)
+Brainstorm ideas for relevant educational topics for the ALANA community. If needed, seek help from the Brand Identity & Socials team regarding a defined target audience.
+- Conduct in-depth research on the selected educational topic and bring in people from the community who might have more knowledge on the specific topic.
+- Select representative artworks and additional materials to showcase. Ask the Infrastructure & Strategy team for a legal document to obtain the original authors' permission to do so. 
+- Write informative, engaging yet short descriptions for all exhibited pieces.
+- Forward the high-quality exhibition pieces and their descriptions to the ALANAboutique virtual space design team.
+- Provide the design team with a layout of the exhibition space within the larger virtual environment according to the existing blueprint.
+- Plan interactive elements to engage visitors (e.g., zoom features, 360-degree views and similar). Provide the information as well to the ALANAboutique design team.
+- For the final publication, please write a short press release about that specific place containing a summarized version and ensure all contributors are named and linked in the document.","What tools are required?
+- Access to Milanote","1,453",0.25,2.5,55.00%,70.00%,615,615,,,
+"Virtual Space Design
+
+* Example calculation based on ALANAboutique",ALANAboutique,"What does it take to create a virtual space for ALANA?
+- Develop the overarching story of the space to fit into the larger narrative of ALANA. 
+- Create a layout plan for the virtual space that aligns with the ALANA brand design.
+- Define the user journey and interaction points and set apart individual exhibition spaces so that switching out parts of the exhibition will be consistently feasible.
+- Research the platform to which the space gets implemented so the framework is clear and well understood.
+- Design and model the larger 3D environment by factoring in the existing branded design elements. 
+- Develop unique textures that fit ALANA's brand identity and apply them. 
+- Create 3D models and assets to outfit the space partially and section off individual exhibition spaces.
+- Optimize the space and individual models for web deployment and implement level-of-detail (LOD) as well as texture compression.
+- Create final renderings of the seasonal exhibition and from each (empty) individual space for marketing purposes!","What tools are required?
+- Access to Milanote
+- Access to Blender, Substance Painter and similar","1,453",3,2.8,100.00%,98.00%,"3,304","3,304",0,,
+"Virtual Sub-Space Design
+
+* Example calculation based on ALANAboutique sub-spaces",ALANAboutique,"What does it take to create a virtual sub-space for ALANA?
+- According to the Individual Exhibition Curation, a dedicated space in 3D should be developed.
+- Create a layout plan for the virtual sub-space that aligns with the given theme.
+- Define the user flow and interaction points.
+- Design the 3D space based on the existing blueprint for the virtual space sections. 
+- Develop unique textures and 3D assets that fit the sub-space theme and apply them. 
+- Optimize the space and individual models for web deployment and implement level-of-detail (LOD) and texture compression.","What tools are required?
+- Access to Milanote
+- Access to Blender, Substance Painter and similar","1,453",1,3,60.00%,90.00%,"1,255","1,255",,,
+"Virtual Space Maintenance, Adaptions & Interactivity
+
+",ALANAboutique,"What does it take to keep the existing ALANAboutique accessible and in excellent condition?
+- Perform regular maintenance and updates, including bug fixes, security patches, content updates, and minor enhancements.
+- Deploy the updated versions to the hosting platform and the website in collaboration with the website developer.
+- Implement new functionalities as they are available, make sense, or are requested. ","What tools are required?
+- Access to the final model files
+- Access to the deployment service and API keys used
+- Access to the ALANA GitHub","1,453",0.25,2,10.00%,90.00%,147,147,,,
+Virtual Space Platform Implementation & Deployment,ALANAboutique,"What does it take to implement and deploy a virtual space for ALANA?
+(This task requires close collaboration with the Brand Identity & Social team and the website developers and will require some back and forth until everything works.)
+- Import the final Blender files to a game engine such as Unreal Engine 5. Optimize even further if needed. Refrain from using too many plugins via UE 5 for reduced loading times.
+- Conduct load time and frame rate tests and optimize for various connection speeds. 
+- Design and implement UI for navigation and shopping to ensure a smooth user experience. 
+- Set up hosting for 3D assets and web applications.
+- Implement content delivery network (CDN) for faster loading.
+- Hand over the final implementation keys to the web developers with all required instructions and with the Brand Identity& Social team's final approval.","What tools are required?
+- Access to the final model files
+- Access to the deployment service and API keys used
+- Access to the ALANA GitHub","1,453",1,3,50.00%,85.00%,988,988,,,
+"ALANAboutique Pitch Deck Creation
+",ALANAboutique,"What does it take to design the Pitch Deck for ALANAboutique?
+- Determine the pitch deck's goals, such as attracting contributors/ brands, informing media contacts, and promoting the project to the ALANA community and beyond.
+- Compile key details about the boutique, including its mission, audience demographics, and unique selling points.
+- Clearly describe the boutique's content types, distribution channels, and exhibition options. Offer developer packages to brands/ contributors who can't deliver the files as needed.
+- Provide and compile statistics on visitors (if available), social media following, and engagement metrics to demonstrate the boutique's reach.
+- Incorporate high-quality renderings and design elements that reflect the boutique's branding and aesthetic.
+- To personalize the deck, Include brief bios and photos of key team members, such as editors and curators.
+- Use a professional design tool or template to create an attractive and easy-to-navigate layout.
+- Proofread the content for accuracy and clarity, ensuring all information is up-to-date and relevant.
+- Share the pitch deck digitally (PDF or online link) with team members responsible for brand and contributor partnerships.","What tools are required?
+- Photoshop or similar
+- Figma, InDesign or similar
+- PDF Creator
+- AI enhancer/ AI creation Tools","1,453",0.25,2,50.00%,75.00%,490,,,,
+ALANAboutique Contributor/ Brand Management,ALANAboutique,"What does it take to manage a contributor/ brand for ALANAboutique?
+(While contributors often require more guidance than brands, brands usually create stronger demands. We recommend setting the values for Battery Life Bar accordingly.) 
+- Actively seek out new voices to expand the diversity of perspectives and in accordance with the curation themes.
+- Establish clear expectations for content quality, formatting, deadlines, etc.
+- Have contributors/ brands sign an agreement outlining terms, rights, compensation, etc.
+- Appoint a curator to work closely with each contributor/ brand so they are well taken care of and have an active voice supporting them.
+- Provide a straightforward process for contributors/ brands to submit their products and files. Inqurie for clear product descriptions, stock, prices, production schedules, etc. If they require assistance, offer them a developer package (see ALANAboutique Pitch Deck).
+- Deliver the files on Google Drive or similar in an organized manner to the integration team.
+- Work with contributors/ brands to improve content quality through multiple rounds of feedback.
+- Hold contributors/ brands accountable to agreed-upon deadlines to maintain the publication schedule.
+- Check in with contributors/ brands frequently to address questions and provide support.","What tools are required?
+- Google Sheets or similar
+- Calendly
+- Video Call Software","1,453",0.25,1.5,30.00%,65.00%,198,198,0,,
+"Contributor/ Brand Integration in Virtual Spaces
+
+* This example calculation assumes that files are delivered correctly and implementation is straightforward. If not, brands/ contributors will need to book a developer package.",ALANAboutique,"What does it take to integrate the works of contributors and brands into the virtual space of ALANAboutique?
+- Inquire a brief and all files from the Contributor/ Brand Management team to create a complete understanding of what is expected.
+- Investigate all received files and inquire about adaptions if necessary.
+- Start integrating the assets into the Unreal Engine file and optimize them if needed. The ALANAboutique team can do minor optimizations, while bigger ones either require a booked developer package or an inquiry with the brand/ contributor so they can fix it.
+- Render a few images (up to 3 shots) of the space for approval with the brand/ contributor. Provide the images to the Contributor/ Brand Management team.
+- If approval is given (via email or in written form), hand over the updated file to the Implementation & Deployment team.","What tools are required?
+- Blender or similar
+- Unreal Engine 5
+- Substance Designer/ Painter or similar
+- Access to Milanote/ brief
+- Email
+- Access to Google Drive","1,453",0.25,1,80.00%,90.00%,523,523,0,,
+"ALANAboutique Management, Sales & Distribution
+
+* Example calculation based on the idea of a monthly repetitive task",ALANAboutique,"What does it take to manage and handle sales and distribution for ALANAboutique?
+(We recommend adjusting the Battery Life Bar value according to the monthly frequency of orders and updates performed by the responsible person. We recommend to start with a value of 25%.)
+- Maintain communication with contributors and brands. Be aware of prices, stock levels, and terms if they change and update them on the storefront.
+- Monitor and process incoming orders, verify payment transactions, and handle order modifications or cancellations.
+Fulfillment and Shipping
+- Send emails to brands and contributors for incoming orders. If people order internal ALANA products, activate drop shipping.
+- Coordinate shipping between brands/ contributors and clients. Coordinate with shipping carriers directly if necessary.
+- Respond to customer inquiries and complaints, process returns and exchanges and provide order status updates.
+- Ensure website functionality and performance. Embed security updates as needed and in collaboration with the website developers.
+- Plan and execute marketing campaigns in collaboration with the Brand Identity & Socials team
+- Update promotional content on the website directly as needed.
+- Track sales and revenue every month and ensure payment gateways are always up to date.
+- Monitor key performance indicators (KPIs) and analyze sales data and customer behavior.
+- Generate quarterly sales and inventory reports for the DAO.","What tools are required?
+- Access to BOSON Protocol page
+- Access to WooCommerce
+- Access to all Contributor/ Brand contacts
+- Access to the ALANAboutique Multi-sig wallet
+- Access to Google Sheets or similar","1,453",0.25,2.5,25.00%,84.00%,336,336,0,,
+"Modeling a 3D Asset - Tier#1
+(difficulty - easy)","ALANAworld, ALANAboutique","What does it take to model an ""easy"" 3D Asset for ALANA?
+This is about asset modeling in 3D for either ALANA's Boutique or ALANA's World. It considers the degree of difficulty to be ""easy."" Easy relates to singular objects that do not necessarily require a retopology process.
+
+Example here: A Vase
+- Concept & References
+- Basic Shape Creation
+- Refining the Shape
+- Adding Details
+- Texturing
+- potentially lighting and rendering","What tools are required?
+- Blender, Cinema 4D, Zbrush, etc.
+- Substance Designer/ Painter or Quixel","1,453",0.5,2,30.00%,50.00%,381,381,0,,
+"Modeling a 3D Asset - Tier#2
+(difficulty - challenging)","ALANAworld, ALANAboutique","What does it take to model a ""challenging"" 3D Asset for ALANA?
+This is about asset modeling in 3D for either ALANA's Boutique or ALANA's World. It considers the degree of difficulty to be ""challenging."" Challenging relates to combined object structures that might require a retopology process or a non-destructive workflow.
+
+Example here: A Sign with Different Elements or Layers
+- Concept & References
+- Basic Shape Creation
+- Refining the Shape
+- Combining Elements
+- Adding Details
+- Retopology or Topology baking
+- Texturing
+- potentially lighting and rendering""","What tools are required?
+- Blender, Cinema 4D, Zbrush, etc.
+- Substance Designer/ Painter or Quixel","1,453",0.5,2,50.00%,65.00%,826,826,0,,
+"Modeling a 3D Asset - Tier#3
+(difficulty - difficult)","ALANAworld, ALANAboutique","What does it take to model a ""difficult"" 3D Asset for ALANA?
+This is about asset modeling in 3D for either ALANA's Boutique or ALANA's World. It considers the degree of difficulty to be ""difficult."" Difficult relates to combined objects that do require a retopology process and some additional tasks for texturing as well as rigging or baked in animations.
+
+Example here: Character or Machine Building
+- Concept & References
+- Base Mesh Creation
+- Refining the Base Mesh
+- Combining Elements
+- Adding Complex Details
+- Retopology or Topology baking
+- Texturing
+- Rigging, weight painting
+- Animations
+- potentially lighting and rendering","What tools are required?
+- Blender, Cinema 4D, Zbrush, etc.
+- Substance Designer/ Painter or Quixel
+- Cascadeur or other animation software","1,453",0.5,2,70.00%,85.00%,"1,513","1,513",0,,
+Custom Texture Design,"ALANAboutique, ALANAworld","What does it take to create a custom texture for ALANA?
+- Research & moodboard according to the topic
+- Break the visuals down into nodes
+- Assemble the node tree (experimentation is required)
+- Export for different applications (modeling software/ game engine)
+- Sofware translation testing and potential iteration","What tools are required?
+- AI Tools
+- Substace Designer, Painter, Sampler or similar","1,453",0.5,2,30.00%,50.00%,381,,,,
+"Initial AI Assistant Planning & Development
+",FABA Studio,"What does it take to plan and develop the initial structure of an AI Assistant?
+- Define the AI assistant's purpose, target audience, and unique story
+- Design the AI's personality, tone, and backstory
+- Choose the appropriate technology stack and platforms
+- Develop the core natural language processing (NLP) capabilities
+- Create initial knowledge base and response templates
+- Design and implement the user interface
+- Define the initial Minimum Viable Product (MVP)","What tools are required?
+- Access to the AI Model/ GitHub",,,,,,,,0,,
+Financial Infrastructure for FABA,FABA Studio,"- Set up payment systems for FABA sales, including crypto wallets, or other payment systems
+- Set up automated accounting for attributing revenue streams to creators, owners, ALANA
+- Manage of refunds, sales, and promotional discounts
+- Set up smart contracts for financial transactions",Use properly vetted protocols for payment,,,,,,,,,,
+"Security, Privacy and Identity Management",FABA Studio,"- Set up authentication system for identity, wallet signup
+- Take measure to ensure system is secure - respond to security patches, arrange security audits and certifications
+- Take legal precautions, including liability insurance or legal contractual language
+- Proactively fix any security leaks and perhaps red team testing",Use proper protocols and best practices,,,,,,,,,,
+Train & Refine an AI Assistant Core Model,FABA Studio,"What does it take to train and refine an AI Assistant Core Model?
+(The workflow here can vary vastly. Therefore, the list below contains possible actions rather than a complete workflow.)
+- Collect and prepare relevant training data.
+- Train the AI model on community-specific content and interactions.
+- Implement and refine conversation flows.
+- Develop custom features aligned with the assistant's story.","What tools are required?
+- Access to the AI Model/ GitHub
+- Access to the training data sheet
+",,,,,,,,0,,
+Integration & Deployment of an AI Assistant,FABA Studio,"What does it take to integrate and deploy an AI Assistant to different community platforms?
+(The workflow here can vary. The list below covers a concise example.)
+- Investigate the specific platform and its criteria for implementation.
+- Integrate the AI assistant with an existing community platform/ website according to its guidelines.
+- Set up monitoring and analytics tools.
+- Conduct thorough testing and quality assurance.
+- Launch the AI assistant to the community.","What tools are required?
+- Access to the AI Model/ GitHub
+- Access to community platforms/ API keys",,,,,,,,0,,
+Fixing bugs in AI Assistant,FABA Studio,"What does it take to fix bugs in the AI Assistant?
+- fix defects in any reported issues in Alana AI
+- fix regressions (previously working systems exhibiting issues due to changes)
+- apply security patches and fixes as they occur
+- write tests to confirm and prove bugs have been fixed. add to unit tests for continous monitoring to prevent regressions","What tools are required?
+- Access to the AI Model/ GitHub
+- Access to an easy to use data base",,,,,,,,0,,
+Performance improvements to AI Assistant,FABA Studio,"What does it take to improve performance in an AI Assistant?
+- Improve user experience by reducing latency between initiating an action and seeing a response.
+- Faster streaming of LLM responses
+- Faster search and database retrieval
+- Algorithmic changes/refactors that improve system performance and robustness
+- Any software change that improves performance according to metrics that can be observed.
+- Demonstrate improvements using objective metrics - eg., time to complete task, latency, success rates for task completion",,,,,,,,,,,
+Market and recruting for contributions to AI Assistant,FABA Studio,"What does it take to market and recruit contributions to the AI Assistant?
+- find creatives that would be willing to contribute materials and knowledge to the Alana AI
+- explain and educate potential contributors of benefits, protections and compensation for their contributions
+- develop and execute on recruitment strategies for targetted contributors including outreach in community forums, meetups
+- define metric for measuring success of initiatives - eg., new user signups, sales made, etc.",,,,,,,,,,,
+Adding and maintaining content and knowledge accessible to the AI Assistant,FABA Studio,"What does it take to add/maintain content in an AI Assistant?
+- Onboard and review candidate content from contributors for errors, copyright violations, and other policy violations
+- Screen and check for security exploits and malicious code/content
+- Work with contributors to provide feedback if content not acceptable
+- Modify/edit content to ensure works within our Alana AI system
+- Automate tests so they can be constantly re-run with every change in the system",,,,,,,,,,,
+Maintain good quality assurance in Alana AI,FABA Studio,"What does it take to maintain good quality assurance in Alana AI?
+- Periodically test system on a good representative range of tasks to see if system response if of sufficent good quality
+- Detect regressions in behavior where system behavior has worsened and file bug issues to fix
+- Design, write and create test plans or evals to help the automate and measure the systems key quality performance indices
+- Monitor user transactions to detect anomalous or good working patterns to suggest new features or fixes",,,,,,,,,,,
+"Adding Novel Features to the FABA AI Agentic system 
+
+* Example calculation based on the Comfy UI integration",FABA Studio,"What does it take to add novel features to the AI Assistant?
+- Draft and write a PRD (Product Requirements Document) for a high level proposal describing a new feature, justifying the need for it with supporting arguments, including current pain points and how it would enhance the user experience.
+- Design features include front-end user experience and back-end components
+- Clarify acceptance criteria for successfully implemented feature
+- Create plan for implementation, including task breakdown and time/resource estimates",,,,,,,,,0,,
+Add Novel Character Development to an AI Assistant,FABA Studio,"What does it take to add novel character development to AI Assistant
+- Ensure ALANA AI always follows the Alana Manifesto guidelines
+- Design curriculum for training Alana with new emerging content
+- Ensure Alana AI's personality does not have malicious or undesirable properties inconsistent with the Manifesto
+- Maintain Alana's core personality and ensure it does not evolve or exhibit undesirable properties",,,,,,,,,0,,
