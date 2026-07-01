@@ -1,16 +1,14 @@
-<p align="center">
-  <img src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafkreicbwvuejy5zsxxizwxmppwln6k3qtwmfjmmfe3ci4zzjzx7iypbxm" alt="ALANA Calculator" width="300" />
-</p>
+<img src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafkreicbwvuejy5zsxxizwxmppwln6k3qtwmfjmmfe3ci4zzjzx7iypbxm" alt="ALANA Calculator" width="300" />
 
-<p align="center">
-  <img src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafybeif75lm7oj766gx2tzonozdk7eujvc22ub2vdm3sidnjnlyfzrxwka" alt="ALANA Calculator Preview" width="100%" />
-</p>
+---
+
+A transparent, NFT-gated internal tool built by [The ALANA Project](https://the-alana-project.xyz) Infrastructure & Strategy team. It lets verified community members submit quests, calculate their $ALANA token rewards based on effort and impact, and have their work reviewed and approved by elected Nucleus Guardians — bringing fair, onchain accountability to community contribution.
+
+<img src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafybeif75lm7oj766gx2tzonozdk7eujvc22ub2vdm3sidnjnlyfzrxwka" alt="ALANA Calculator Preview" width="100%" />
 
 ---
 
 # ALANA Calculator
-
-A transparent, NFT-gated internal tool built by [The ALANA Project](https://the-alana-project.xyz) Infrastructure & Strategy team. It lets verified community members submit quests, calculate their $ALANA token rewards based on effort and impact, and have their work reviewed and approved by elected Nucleus Guardians — bringing fair, onchain accountability to community contribution.
 
 ---
 
@@ -38,7 +36,7 @@ A transparent, NFT-gated internal tool built by [The ALANA Project](https://the-
 ## Branch structure
 
 | Branch | Description |
-|--------|-------------|
+|:-------|:------------|
 | Infrastructure & Strategy | DAO governance, tooling, documentation, financial reporting |
 | Identity & Socials | Brand, social media, events, onboarding |
 | ALANAmagazine | Editorial, layout, production, distribution |
@@ -52,7 +50,7 @@ A transparent, NFT-gated internal tool built by [The ALANA Project](https://the-
 Built and maintained by the ALANA Project Infrastructure & Strategy team.
 
 | Name | Role |
-|------|------|
+|:-----|:-----|
 | [Stella Achenbach](https://www.linkedin.com/in/stella-achenbach/) | Nucleus Guardian |
 | [Nils Otter](https://www.linkedin.com/in/nils-otter-a23446131/) | Nucleus Guardian |
 | [Kerry Allen](https://www.linkedin.com/in/kerry-allen-greyscale-group/) | Nucleus Specialist |
