@@ -1,15 +1,13 @@
 export type Branch =
   | 'Infrastructure & Strategy'
-  | 'Brand Identity & Socials'
-  | 'Onboarding & Community'
+  | 'Identity & Socials'
   | 'ALANAmagazine'
   | 'ALANAboutique'
   | 'FABA Studio';
 
 export const BRANCH_FACTORS: Record<Branch, number> = {
   'Infrastructure & Strategy': 7,
-  'Onboarding & Community': 6,
-  'Brand Identity & Socials': 5,
+  'Identity & Socials': 5,
   'ALANAmagazine': 4,
   'ALANAboutique': 4,
   'FABA Studio': 4,
@@ -32,10 +30,11 @@ export interface ContributionTemplate {
   reach: number;
   orgImpact: number;
   customerImpact: number;
-  // User inputs (these are examples from CSV, actual values entered by user)
   batteryLifeExample?: number;
   qualityExample?: number;
   interimResultExample?: number;
+  milestoneIds?: string[];
+  isDraft?: boolean;
 }
 
 export interface ContributionSubmission {
@@ -44,6 +43,7 @@ export interface ContributionSubmission {
   templateName: string;
   userAddress: string;
   branches: Branch[];
+  secondaryBranch?: Branch;
 
   // User inputs
   contributorName: string; // Name or handle

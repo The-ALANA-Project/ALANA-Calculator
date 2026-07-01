@@ -49,7 +49,10 @@ export function HomePage() {
         <div className="relative min-h-[calc(100vh-140px)] flex items-center px-8 md:px-16 max-w-6xl mx-auto">
           <div className="max-w-3xl text-foreground">
             <h1 className="leading-tight">{hero.heading}</h1>
-            <p className="max-w-2xl mt-4">{hero.subheading}</p>
+            <p className="max-w-2xl mt-4">
+              To all ALANA Contributors, from Nucleus Apprentices, Specialists to Guardians. This is where you hand in your Quests to earn $ALANA token rewards.<br /><br />
+              Start by connecting your wallet, or simply hitting the green button below.
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               {/* Primary CTA: Add New Contribution */}

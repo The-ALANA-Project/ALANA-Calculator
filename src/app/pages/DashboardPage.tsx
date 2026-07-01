@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router';
 import { Search, ChevronDown, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { contributionTemplates } from '../data/templates';
-import { Branch, BRANCH_FACTORS, ContributionTemplate } from '../types/contribution';
+import { Branch, ContributionTemplate } from '../types/contribution';
 import { Footer } from '../components/Footer';
-import { getCustomTemplates } from '../services/templateStorage';
+import { getTemplates } from '../services/templateService';
 
 const allBranches: Branch[] = [
   'Infrastructure & Strategy',
-  'Brand Identity & Socials',
-  'Onboarding & Community',
+  'Identity & Socials',
   'ALANAmagazine',
   'ALANAboutique',
   'FABA Studio',
@@ -23,13 +22,12 @@ export function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [allTemplates, setAllTemplates] = useState<ContributionTemplate[]>([]);
+  const [allTemplates, setAllTemplates] = useState<ContributionTemplate[]>(contributionTemplates);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const customTemplates = getCustomTemplates();
-    setAllTemplates([...contributionTemplates, ...customTemplates]);
+    getTemplates().then(setAllTemplates).catch(() => setAllTemplates(contributionTemplates));
   }, []);
 
   useEffect(() => {
@@ -86,11 +84,24 @@ export function DashboardPage() {
 
           {/* Controls Bar */}
           <div className="flex items-center gap-3">
+            {/* Search — always visible, full width */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search quests…"
+                className="w-full pl-9 pr-4 h-10 bg-background border border-border focus:outline-none focus:border-accent text-foreground placeholder:text-muted-foreground text-sm"
+              />
+            </div>
+
             {/* Branch Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative w-56" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen((o) => !o)}
-                className={`flex items-center gap-2 px-4 h-10 text-sm font-medium border rounded-none rounded-br-[15px] transition-colors ${
+                className={`w-full flex items-center justify-between gap-2 px-4 h-10 text-sm border transition-colors ${
                   selectedBranch !== 'all'
                     ? 'bg-accent border-accent text-foreground'
                     : 'bg-background border-border text-foreground hover:border-accent'
@@ -103,7 +114,7 @@ export function DashboardPage() {
               </button>
 
               {dropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 z-20 bg-background border border-border rounded-none rounded-br-[15px] shadow-lg min-w-[220px] py-1">
+                <div className="absolute top-full right-0 mt-0 z-20 bg-background border border-border border-t-0 w-full">
                   {(['all', ...allBranches] as (Branch | 'all')[]).map((branch) => (
                     <button
                       key={branch}
@@ -119,30 +130,6 @@ export function DashboardPage() {
                   ))}
                 </div>
               )}
-            </div>
-
-            {/* Spacer */}
-            <div className="flex-1" />
-
-            {/* Search — expands leftward from icon */}
-            <div className="flex items-center justify-end gap-2">
-              <div className={`overflow-hidden transition-all duration-300 ${searchOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search quests…"
-                  className="w-full pr-3 pl-4 h-10 bg-background border-b border-border focus:outline-none focus:border-accent text-foreground placeholder:text-muted-foreground text-sm"
-                />
-              </div>
-              <button
-                onClick={() => setSearchOpen((o) => !o)}
-                className="flex items-center justify-center w-10 h-10 text-foreground hover:text-accent transition-colors"
-                aria-label="Toggle search"
-              >
-                {searchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
-              </button>
             </div>
           </div>
 

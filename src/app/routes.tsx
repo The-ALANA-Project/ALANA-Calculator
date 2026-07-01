@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       { path: 'quest-library', Component: DashboardPage },
       { path: 'calculator/:templateId', Component: CalculatorPage },
       { path: 'my-quests', Component: SubmissionsPage },
-      { path: 'leaderboard', Component: LeaderboardPage },
+      { path: 'analytics', Component: LeaderboardPage },
       { path: 'guardian-panel', Component: AdminPage },
 
       // ── Fallback ─────────────────────────────────────────────────────

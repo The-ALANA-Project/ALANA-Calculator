@@ -72,6 +72,7 @@ export function SideShelfMenu({ isOpen, onClose, currentPath }: SideShelfMenuPro
   const filteredNavItems = navItems.filter((item) => {
     if (item.id === 'quest-library') return isAuthenticated;
     if (item.id === 'my-quests') return isAuthenticated;
+    if (item.id === 'analytics') return true;
     if (item.id === 'admin') return role === 'guardian';
     return true;
   });

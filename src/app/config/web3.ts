@@ -19,7 +19,7 @@ createAppKit({
   networks: [optimism],
   projectId,
   metadata: {
-    name: 'ALANA Quest Calculator',
+    name: 'ALANA Calculator',
     description: 'Submit recurring quests for ALANA token rewards.',
     url: typeof window !== 'undefined' ? window.location.origin : 'https://alana.local',
     icons: [],

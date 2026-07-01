@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import { Search, Plus, Edit, Trash2 } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, Edit, Trash2, ChevronDown } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { getAllSubmissions, updateSubmission, calculateReward } from '../services/contributionStorage';
-import { ContributionSubmission, ContributionTemplate, ReviewEntry } from '../types/contribution';
+import { getAllSubmissions, updateSubmission, calculateReward } from '../services/submissionsService';
+import { ContributionSubmission, ContributionTemplate, ReviewEntry, Branch } from '../types/contribution';
 import { toast } from 'sonner';
 import { Footer } from '../components/Footer';
 import { linkifyText } from '../utils/linkify';
 import { TemplateFormModal } from '../components/TemplateFormModal';
-import { getCustomTemplates, createCustomTemplate, updateCustomTemplate, deleteCustomTemplate } from '../services/templateStorage';
+import { getTemplates, updateTemplate, createTemplate, deleteTemplate } from '../services/templateService';
 import { contributionTemplates } from '../data/templates';
 
 export function AdminPage() {
   const { role, address } = useAuth();
   const [activeTab, setActiveTab] = useState<'pending' | 'archived' | 'templates'>('pending');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [submissionSearch, setSubmissionSearch] = useState('');
   const [submissions, setSubmissions] = useState<ContributionSubmission[]>([]);
   const [selectedSubmission, setSelectedSubmission] = useState<ContributionSubmission | null>(null);
   const [reviewBatteryLife, setReviewBatteryLife] = useState(50);
@@ -23,22 +23,70 @@ export function AdminPage() {
   const [isReviewing, setIsReviewing] = useState(false);
 
   // Template management state
-  const [customTemplates, setCustomTemplates] = useState<ContributionTemplate[]>([]);
+  const [allTemplates, setAllTemplates] = useState<ContributionTemplate[]>(contributionTemplates);
+  const [templatesLoading, setTemplatesLoading] = useState(false);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
   const [editingTemplate, setEditingTemplate] = useState<ContributionTemplate | undefined>();
+  const [templateSearch, setTemplateSearch] = useState('');
+  const [branchFilter, setBranchFilter] = useState<Set<Branch>>(new Set());
+  const [branchDropdownOpen, setBranchDropdownOpen] = useState(false);
+  const branchDropdownRef = useRef<HTMLDivElement>(null);
+
+  const ALL_BRANCHES: Branch[] = [
+    'Infrastructure & Strategy',
+    'Identity & Socials',
+    'ALANAmagazine',
+    'ALANAboutique',
+    'FABA Studio',
+  ];
+
+  const filteredTemplates = allTemplates.filter((t) => {
+    const matchesBranch = branchFilter.size === 0 || t.branches.some((b) => branchFilter.has(b));
+    const q = templateSearch.toLowerCase();
+    const matchesSearch = q === '' || t.category.toLowerCase().includes(q) || t.description.toLowerCase().includes(q);
+    return matchesBranch && matchesSearch;
+  });
+
+  const toggleBranch = (branch: Branch) => {
+    setBranchFilter((prev) => {
+      const next = new Set(prev);
+      next.has(branch) ? next.delete(branch) : next.add(branch);
+      return next;
+    });
+  };
 
   useEffect(() => {
     loadSubmissions();
-    loadCustomTemplates();
   }, [activeTab]);
 
-  const loadCustomTemplates = () => {
-    const templates = getCustomTemplates();
-    setCustomTemplates(templates);
+  useEffect(() => {
+    if (activeTab === 'templates') loadAllTemplates();
+  }, [activeTab]);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (branchDropdownRef.current && !branchDropdownRef.current.contains(e.target as Node)) {
+        setBranchDropdownOpen(false);
+      }
+    }
+    if (branchDropdownOpen) document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [branchDropdownOpen]);
+
+  const loadAllTemplates = async () => {
+    setTemplatesLoading(true);
+    try {
+      const templates = await getTemplates();
+      setAllTemplates(templates);
+    } catch {
+      setAllTemplates(contributionTemplates);
+    } finally {
+      setTemplatesLoading(false);
+    }
   };
 
-  const loadSubmissions = () => {
-    const allSubmissions = getAllSubmissions();
+  const loadSubmissions = async () => {
+    const allSubmissions = await getAllSubmissions();
     const filtered = allSubmissions.filter((sub) => {
       if (activeTab === 'pending') {
         return sub.status === 'pending' || sub.status === 'in_review';
@@ -50,8 +98,8 @@ export function AdminPage() {
   };
 
   const filteredSubmissions = submissions.filter((submission) => {
-    if (searchQuery === '') return true;
-    const query = searchQuery.toLowerCase();
+    if (submissionSearch === '') return true;
+    const query = submissionSearch.toLowerCase();
     return (
       submission.templateName?.toLowerCase().includes(query) ||
       submission.contributorName?.toLowerCase().includes(query) ||
@@ -67,7 +115,7 @@ export function AdminPage() {
     setReviewNotes('');
     // Mark as in_review the moment a Guardian opens it
     if (submission.status === 'pending') {
-      updateSubmission(submission.id, { status: 'in_review' });
+      updateSubmission(submission.id, { status: 'in_review' }).then(() => loadSubmissions());
     }
   };
 
@@ -77,21 +125,22 @@ export function AdminPage() {
     setReviewerName('');
   };
 
-  const handleCreateTemplate = (template: Omit<ContributionTemplate, 'id'>) => {
+  const handleCreateTemplate = async (template: Omit<ContributionTemplate, 'id'>, isDraft: boolean) => {
     try {
       if (editingTemplate) {
-        updateCustomTemplate(editingTemplate.id, template);
-        toast.success('Template updated successfully!');
+        await updateTemplate(editingTemplate.id, { ...template, isDraft });
+        toast.success(isDraft ? 'Draft saved.' : 'Template published.');
       } else {
-        createCustomTemplate(template);
-        toast.success('Template created successfully!');
+        const id = template.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        await createTemplate({ ...template, id, isDraft });
+        toast.success(isDraft ? 'Draft saved.' : 'Template published.');
       }
       setIsTemplateModalOpen(false);
       setEditingTemplate(undefined);
-      loadCustomTemplates();
+      loadAllTemplates();
     } catch (error) {
       console.error('Template save error:', error);
-      toast.error('Failed to save template');
+      toast.error('Failed to save template.');
     }
   };
 
@@ -100,15 +149,14 @@ export function AdminPage() {
     setIsTemplateModalOpen(true);
   };
 
-  const handleDeleteTemplate = (templateId: string) => {
-    if (window.confirm('Are you sure you want to delete this template?')) {
-      const success = deleteCustomTemplate(templateId);
-      if (success) {
-        toast.success('Template deleted successfully!');
-        loadCustomTemplates();
-      } else {
-        toast.error('Failed to delete template');
-      }
+  const handleDeleteTemplate = async (templateId: string) => {
+    if (!window.confirm('Are you sure you want to delete this quest template? This cannot be undone.')) return;
+    try {
+      await deleteTemplate(templateId);
+      toast.success('Template deleted.');
+      loadAllTemplates();
+    } catch {
+      toast.error('Failed to delete template.');
     }
   };
 
@@ -147,7 +195,7 @@ export function AdminPage() {
         reviewerName: reviewerName.trim() || undefined,
       };
 
-      updateSubmission(selectedSubmission.id, {
+      await updateSubmission(selectedSubmission.id, {
         status: 'approved',
         adjustedBatteryLife: reviewBatteryLife,
         adjustedQuality: reviewQuality,
@@ -193,7 +241,7 @@ export function AdminPage() {
         reviewerName: reviewerName.trim() || undefined,
       };
 
-      updateSubmission(selectedSubmission.id, {
+      await updateSubmission(selectedSubmission.id, {
         status: 'needs_revision',
         reviewNotes: reviewNotes.trim(),
         reviewedAt: revisionEntry.reviewedAt,
@@ -250,17 +298,6 @@ export function AdminPage() {
             </p>
           </div>
 
-          {/* Search Bar */}
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by task, contributor, wallet, or branch..."
-              className="w-full pl-12 pr-4 py-3 bg-background border border-border focus:outline-none focus:ring-2 focus:ring-accent text-foreground placeholder:text-muted-foreground"
-            />
-          </div>
 
           {/* Tabs */}
           <div className="flex gap-2 border-b border-border">
@@ -296,138 +333,170 @@ export function AdminPage() {
             </button>
           </div>
 
-          {/* Stats */}
-          {activeTab !== 'templates' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="border border-border rounded-none rounded-br-[25px] p-6">
-                <div className="text-sm text-muted-foreground">
-                  {activeTab === 'pending' ? 'Pending Review' : 'Archived'}
-                </div>
-                <div className="text-3xl font-bold mt-1 text-[#FFDDB2]">{filteredSubmissions.length}</div>
-              </div>
-            </div>
-          )}
 
           {/* Templates Management */}
           {activeTab === 'templates' && (
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-medium">Template Management</h3>
+              {/* Header row */}
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <h3 className="text-lg font-medium">
+                  Template Management
+                  <span className="text-sm font-normal text-muted-foreground ml-2">
+                    {filteredTemplates.length} of {allTemplates.length}
+                  </span>
+                </h3>
                 <button
-                  onClick={() => {
-                    setEditingTemplate(undefined);
-                    setIsTemplateModalOpen(true);
-                  }}
-                  className="flex items-center gap-2 bg-accent border border-accent text-foreground font-medium px-4 h-10 rounded-none rounded-br-[15px] transition-colors hover:bg-white/10 hover:backdrop-blur-sm hover:border-black"
+                  onClick={() => { setEditingTemplate(undefined); setIsTemplateModalOpen(true); }}
+                  className="bg-accent text-foreground font-medium px-4 h-10 rounded-none rounded-br-[15px] hover:bg-foreground hover:text-background transition-colors"
                 >
-                  <Plus className="w-4 h-4" />
                   Create Template
                 </button>
               </div>
 
-              <div className="space-y-6">
-                {/* Default Templates */}
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-3">Default Templates</h4>
-                  <div className="grid grid-cols-1 gap-3">
-                    {contributionTemplates.map((template) => (
-                      <div
-                        key={template.id}
-                        className="border border-border rounded-none rounded-br-[15px] p-4 bg-background/50"
-                      >
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex-1">
-                            <h5 className="font-medium">{template.category}</h5>
-                            <div className="flex flex-wrap gap-2 mt-2">
-                              {template.branches.map((branch) => (
-                                <span
-                                  key={branch}
-                                  className="text-xs px-2 py-1 bg-accent/20 text-foreground border border-accent"
-                                >
-                                  {branch}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          <div className="text-xs text-muted-foreground">Built-in</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+              {/* Search + branch filter row */}
+              <div className="flex items-center gap-3 flex-wrap">
+                {/* Text search */}
+                <div className="relative flex-1 min-w-[200px]">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  <input
+                    type="text"
+                    value={templateSearch}
+                    onChange={(e) => setTemplateSearch(e.target.value)}
+                    placeholder="Search templates…"
+                    className="w-full pl-9 pr-4 h-10 bg-background border border-border focus:outline-none focus:border-accent text-foreground placeholder:text-muted-foreground text-sm"
+                  />
                 </div>
 
-                {/* Custom Templates */}
-                <div>
-                  <h4 className="text-sm font-medium text-muted-foreground mb-3">
-                    Custom Templates ({customTemplates.length})
-                  </h4>
-                  {customTemplates.length === 0 ? (
-                    <div className="border border-border rounded-none rounded-br-[15px] p-8 text-center">
-                      <p className="text-muted-foreground">
-                        No custom templates yet. Click "Create Template" to add your first one.
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 gap-3">
-                      {customTemplates.map((template) => (
-                        <div
-                          key={template.id}
-                          className="border border-border rounded-none rounded-br-[15px] p-4 hover:border-accent transition-colors"
+                {/* Branch multi-select dropdown */}
+                <div className="relative w-56" ref={branchDropdownRef}>
+                  <button
+                    onClick={() => setBranchDropdownOpen((v) => !v)}
+                    className={`w-full flex items-center justify-between gap-2 px-4 h-10 text-sm border transition-colors ${
+                      branchFilter.size > 0
+                        ? 'bg-accent text-foreground border-accent'
+                        : 'bg-background text-foreground border-border hover:border-accent'
+                    }`}
+                  >
+                    {branchFilter.size === 0 ? 'All Branches' : `${branchFilter.size} Branch${branchFilter.size > 1 ? 'es' : ''}`}
+                    <ChevronDown className={`w-4 h-4 transition-transform ${branchDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {branchDropdownOpen && (
+                    <div className="absolute top-full right-0 mt-0 bg-background border border-border border-t-0 z-20 w-56">
+                      {branchFilter.size > 0 && (
+                        <button
+                          onClick={() => setBranchFilter(new Set())}
+                          className="w-full text-left px-4 py-2.5 text-sm text-muted-foreground hover:text-accent border-b border-border transition-colors"
                         >
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1">
-                              <h5 className="font-medium">{template.category}</h5>
-                              <div className="flex flex-wrap gap-2 mt-2">
-                                {template.branches.map((branch) => (
-                                  <span
-                                    key={branch}
-                                    className="text-xs px-2 py-1 bg-accent/20 text-foreground border border-accent"
-                                  >
-                                    {branch}
-                                  </span>
-                                ))}
-                              </div>
-                              <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
-                                {template.description}
-                              </p>
-                            </div>
-                            <div className="flex gap-2">
-                              <button
-                                onClick={() => handleEditTemplate(template)}
-                                className="p-2 border border-border hover:border-accent transition-colors"
-                                title="Edit template"
-                              >
-                                <Edit className="w-4 h-4" />
-                              </button>
-                              <button
-                                onClick={() => handleDeleteTemplate(template.id)}
-                                className="p-2 border border-border hover:border-red-500 hover:text-red-500 transition-colors"
-                                title="Delete template"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
+                          Clear filter
+                        </button>
+                      )}
+                      {ALL_BRANCHES.map((branch) => (
+                        <button
+                          key={branch}
+                          onClick={() => toggleBranch(branch)}
+                          className={`w-full text-left px-4 py-2.5 text-sm flex items-center justify-between transition-colors ${
+                            branchFilter.has(branch) ? 'text-accent font-medium' : 'text-foreground hover:text-accent'
+                          }`}
+                        >
+                          {branch}
+                          {branchFilter.has(branch) && <span className="text-accent">✓</span>}
+                        </button>
                       ))}
                     </div>
                   )}
                 </div>
               </div>
+
+              {templatesLoading ? (
+                <div className="border border-border rounded-none rounded-br-[25px] p-12 text-center">
+                  <p className="text-muted-foreground">Loading templates…</p>
+                </div>
+              ) : filteredTemplates.length === 0 ? (
+                <div className="border border-border rounded-none rounded-br-[25px] p-12 text-center">
+                  <p className="text-muted-foreground">No templates match your search.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-3">
+                  {filteredTemplates.map((template) => (
+                    <div
+                      key={template.id}
+                      className="border border-border rounded-none rounded-br-[15px] p-4 hover:border-accent transition-colors"
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <h5 className="font-medium">{template.category}</h5>
+                            {template.isDraft && (
+                              <span className="text-xs px-2 py-0.5 border border-border text-muted-foreground font-mono">Draft</span>
+                            )}
+                          </div>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            {template.branches.map((branch) => (
+                              <span
+                                key={branch}
+                                className="text-xs px-2 py-1 bg-accent/20 text-foreground border border-accent"
+                              >
+                                {branch}
+                              </span>
+                            ))}
+                          </div>
+                          <div className="flex gap-4 mt-2 text-xs text-muted-foreground font-mono">
+                            <span>Reach: {template.reach.toLocaleString()}</span>
+                            <span>Org: {template.orgImpact}</span>
+                            <span>Customer: {template.customerImpact}</span>
+                          </div>
+                        </div>
+                        <div className="flex gap-2 shrink-0">
+                          <button
+                            onClick={() => handleEditTemplate(template)}
+                            className="p-2 border border-border hover:border-accent transition-colors"
+                            title="Edit template"
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteTemplate(template.id)}
+                            className="p-2 border border-border hover:border-destructive hover:text-destructive transition-colors"
+                            title="Delete template"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
           {/* Submissions List */}
           {activeTab !== 'templates' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">
-                {activeTab === 'pending' ? 'Pending Submissions' : 'Archived Submissions'}
-              </h3>
+              <div className="flex items-center justify-between gap-4 flex-wrap">
+                <h3 className="text-lg font-medium">
+                  {activeTab === 'pending' ? 'Pending Submissions' : 'Archived Submissions'}
+                  <span className="text-sm font-normal text-muted-foreground ml-2">
+                    {filteredSubmissions.length} of {submissions.length}
+                  </span>
+                </h3>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  <input
+                    type="text"
+                    value={submissionSearch}
+                    onChange={(e) => setSubmissionSearch(e.target.value)}
+                    placeholder="Search by task, contributor, wallet…"
+                    className="pl-9 pr-4 h-10 w-72 bg-background border border-border focus:outline-none focus:border-accent text-foreground placeholder:text-muted-foreground text-sm"
+                  />
+                </div>
+              </div>
 
             {filteredSubmissions.length === 0 ? (
               <div className="border border-border rounded-none rounded-br-[25px] p-12 text-center">
                 <p className="text-muted-foreground">
-                  {searchQuery
+                  {submissionSearch
                     ? 'No submissions match your search.'
                     : activeTab === 'pending'
                     ? 'No pending submissions to review.'

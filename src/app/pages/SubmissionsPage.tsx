@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
-import { getUserSubmissions, submitForReview, deleteSubmission } from '../services/contributionStorage';
+import { getUserSubmissions, submitForReview, deleteSubmission } from '../services/submissionsService';
 import { ContributionSubmission } from '../types/contribution';
 import { Footer } from '../components/Footer';
 import { toast } from 'sonner';
@@ -53,9 +53,9 @@ export function SubmissionsPage() {
   const [submissions, setSubmissions] = useState<ContributionSubmission[]>([]);
   const [showCelebration, setShowCelebration] = useState(false);
 
-  const loadSubmissions = () => {
+  const loadSubmissions = async () => {
     if (address) {
-      const userSubs = getUserSubmissions(address);
+      const userSubs = await getUserSubmissions(address);
       setSubmissions(userSubs.sort((a, b) => b.submittedAt - a.submittedAt));
     }
   };
@@ -64,9 +64,9 @@ export function SubmissionsPage() {
     loadSubmissions();
   }, [address]);
 
-  const handleDelete = (submissionId: string) => {
+  const handleDelete = async (submissionId: string) => {
     if (!window.confirm('Are you sure you want to delete this quest? This cannot be undone.')) return;
-    const success = deleteSubmission(submissionId);
+    const success = await deleteSubmission(submissionId);
     if (success) {
       toast.success('Quest deleted.');
       loadSubmissions();
@@ -75,8 +75,8 @@ export function SubmissionsPage() {
     }
   };
 
-  const handleSubmitForReview = (submissionId: string) => {
-    const result = submitForReview(submissionId);
+  const handleSubmitForReview = async (submissionId: string) => {
+    const result = await submitForReview(submissionId);
     if (result) {
       loadSubmissions();
       setShowCelebration(true);

@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router';
 import { useAuth } from '../contexts/AuthContext';
 import { contributionTemplates } from '../data/templates';
-import { ContributionTemplate, ContributionSubmission } from '../types/contribution';
-import { calculateReward, createSubmission, updateSubmission } from '../services/contributionStorage';
-import { BRANCH_FACTORS } from '../types/contribution';
+import { ContributionTemplate, ContributionSubmission, Branch, BRANCH_FACTORS } from '../types/contribution';
+import { calculateReward, buildSubmission, createSubmission, updateSubmission } from '../services/submissionsService';
 import { toast } from 'sonner';
 import { Footer } from '../components/Footer';
 
@@ -24,6 +23,7 @@ export function CalculatorPage() {
   const [quality, setQuality] = useState(editingSubmission?.quality || 70);
   const [proofOfWork, setProofOfWork] = useState(editingSubmission?.proofOfWork || '');
   const [proofImages, setProofImages] = useState<string[]>(editingSubmission?.proofImages || []);
+  const [secondaryBranch, setSecondaryBranch] = useState<Branch | ''>(editingSubmission?.secondaryBranch || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -150,38 +150,29 @@ export function CalculatorPage() {
 
     try {
       if (editingSubmission) {
-        // Update existing draft
         const branchFactor = Math.max(...template!.branches.map((b) => BRANCH_FACTORS[b]));
         const calculatedReward = calculateReward(
-          template!.reach,
-          template!.orgImpact,
-          template!.customerImpact,
-          batteryLife,
-          quality,
-          branchFactor
+          template!.reach, template!.orgImpact, template!.customerImpact,
+          batteryLife, quality, branchFactor
         );
-
-        updateSubmission(editingSubmission.id, {
+        await updateSubmission(editingSubmission.id, {
           contributorName: contributorName.trim(),
-          batteryLife,
-          quality,
+          batteryLife, quality,
           proofOfWork: proofOfWork.trim(),
-          proofImages,
-          calculatedReward,
+          proofImages, calculatedReward,
+          secondaryBranch: secondaryBranch || undefined,
         });
-
         toast.success('Draft updated successfully!');
       } else {
-        // Create new draft
-        createSubmission(address, {
+        const submission = buildSubmission(address, {
           templateId: template!.id,
           contributorName: contributorName.trim(),
-          batteryLife,
-          quality,
+          batteryLife, quality,
           proofOfWork: proofOfWork.trim(),
           proofImages,
-        });
-
+          secondaryBranch: secondaryBranch || undefined,
+        }, template!);
+        await createSubmission(submission);
         toast.success('Draft saved successfully!');
       }
 
@@ -273,6 +264,29 @@ export function CalculatorPage() {
                 />
                 <p className="text-xs text-muted-foreground">
                   This helps Guardians identify you and ensures proper attribution for your work.
+                </p>
+              </div>
+
+              {/* Secondary Branch */}
+              <div className="space-y-3 pt-4 border-t border-border">
+                <label htmlFor="secondaryBranch" className="text-sm font-medium block">
+                  Secondary Branch <span className="text-muted-foreground font-normal">(optional)</span>
+                </label>
+                <select
+                  id="secondaryBranch"
+                  value={secondaryBranch}
+                  onChange={(e) => setSecondaryBranch(e.target.value as Branch | '')}
+                  className="w-full px-4 py-3 bg-background border border-border focus:outline-none focus:ring-2 focus:ring-accent text-foreground"
+                >
+                  <option value="">None</option>
+                  {(Object.keys(BRANCH_FACTORS) as Branch[])
+                    .filter((b) => !template?.branches.includes(b))
+                    .map((b) => (
+                      <option key={b} value={b}>{b}</option>
+                    ))}
+                </select>
+                <p className="text-xs text-muted-foreground">
+                  If this quest closely relates to another branch, you can indicate that here.
                 </p>
               </div>
 

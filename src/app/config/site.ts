@@ -9,14 +9,14 @@
 export const siteConfig = {
   // ── Product Identity ──────────────────────────────────────────────────────
   /** Full product name displayed across the site */
-  productName: 'ALANA Quest Calculator',
+  productName: 'ALANA Calculator',
   /** Shown in the header beside the ALANA mark */
-  productLabel: 'Quest Calculator',
+  productLabel: 'Calculator',
   /** Short description shown in SEO meta and hero */
   tagline: 'Track, calculate, and submit your community quests for ALANA token rewards.',
   /** Extended description for About / hero section */
   description:
-    'The ALANA Quest Calculator enables community members to submit recurring tasks and calculate ALANA token rewards based on effort, quality, and impact. NFT-gated access ensures only verified Nucleus Guardians, Specialists, and Apprentices can participate in building and sustaining The ALANA Project ecosystem.',
+    'The ALANA Calculator enables community members to submit recurring tasks and calculate ALANA token rewards based on effort, quality, and impact. NFT-gated access ensures only verified Nucleus Guardians, Specialists, and Apprentices can participate in building and sustaining The ALANA Project ecosystem.',
 
   // ── Contact & Legal ───────────────────────────────────────────────────────
   contactEmail: 'contact@the-alana-project.xyz',
@@ -30,7 +30,7 @@ export const siteConfig = {
     { id: 'about', label: 'About', path: '/about' },
     { id: 'quest-library', label: 'Quest Library', path: '/quest-library' },
     { id: 'my-quests', label: 'My Quests', path: '/my-quests' },
-    { id: 'leaderboard', label: 'Leaderboard', path: '/leaderboard' },
+    { id: 'analytics', label: 'Analytics', path: '/analytics' },
     { id: 'admin', label: 'Guardian Panel', path: '/guardian-panel' },
   ],
 
@@ -49,7 +49,7 @@ export const siteConfig = {
   hero: {
     heading: 'Welcome',
     subheading:
-      'To all ALANA Contributors, from Nucleus Apprentices, Specialists to Guardians. This is where you hand in your Quests to earn rewards. Start by connecting your wallet.',
+      'To all ALANA Contributors, from Nucleus Apprentices, Specialists to Guardians. This is where you hand in your Quests to earn $ALANA token rewards. Start by connecting your wallet, or simply hitting the green button below.',
 secondaryCta: { label: 'Learn More', path: '/about' },
   },
 };

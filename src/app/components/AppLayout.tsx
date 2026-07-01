@@ -49,7 +49,7 @@ export function AppLayout() {
               aria-label="Return to home"
             >
               <img
-                src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafkreihvke4iyalsjvn4i3ehilw2woxwbfj6qk2sog7tg5rnxehbqrgdvi"
+                src="https://pink-quick-lizard-297.mypinata.cloud/ipfs/bafkreid766y23tdqgb7pbhcyrv5tlem5ejlcj7zez7gcp26krnvicdh4wq"
                 alt="ALANA Logo"
                 className="h-[28px] w-auto"
               />

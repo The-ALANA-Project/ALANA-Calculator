@@ -1,8 +1,15 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
-import { ChevronDown, Calendar, Search, X } from 'lucide-react';
-import { getAllSubmissions } from '../services/contributionStorage';
-import { ContributionSubmission } from '../types/contribution';
+import { useState, useEffect, useMemo, useRef } from 'react';
+import { ChevronDown, Calendar } from 'lucide-react';
+import {
+  AreaChart, Area, BarChart, Bar,
+  XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
+import { getAllSubmissions } from '../services/submissionsService';
+import { ContributionSubmission, Branch } from '../types/contribution';
 import { Footer } from '../components/Footer';
+
+// ── Types ─────────────────────────────────────────────────────────────────
 
 type PeriodKey = 'all' | '7d' | '30d' | '3m' | '6m' | '1y';
 
@@ -17,295 +24,387 @@ const PERIODS: { label: string; value: PeriodKey }[] = [
 
 const MS_MAP: Record<string, number> = { '7d': 7, '30d': 30, '3m': 90, '6m': 180, '1y': 365 };
 
-function filterByPeriod(submissions: ContributionSubmission[], period: PeriodKey) {
-  if (period === 'all') return submissions;
-  const cutoff = Date.now() - MS_MAP[period] * 86_400_000;
-  return submissions.filter((s) => s.reviewedAt! >= cutoff);
+const BRANCHES: Branch[] = [
+  'Infrastructure & Strategy', 'Identity & Socials',
+  'ALANAmagazine', 'ALANAboutique', 'FABA Studio',
+];
+
+const BRANCH_SHORT: Record<Branch, string> = {
+  'Infrastructure & Strategy': 'Infra & Strategy',
+  'Identity & Socials': 'Identity & Socials',
+  'ALANAmagazine': 'ALANAmagazine',
+  'ALANAboutique': 'ALANAboutique',
+  'FABA Studio': 'FABA Studio',
+};
+
+function filterByPeriod(subs: ContributionSubmission[], period: PeriodKey, offsetMultiplier = 0) {
+  if (period === 'all' && offsetMultiplier === 0) return subs;
+  if (period === 'all') return [];
+  const ms = MS_MAP[period] * 86_400_000;
+  const now = Date.now();
+  const end = now - offsetMultiplier * ms;
+  const start = end - ms;
+  return subs.filter((s) => s.reviewedAt! >= start && s.reviewedAt! < end);
+}
+
+function pctChange(current: number, previous: number): string | null {
+  if (previous === 0) return current > 0 ? '+new' : null;
+  const pct = Math.round(((current - previous) / previous) * 100);
+  return pct >= 0 ? `+${pct}%` : `${pct}%`;
+}
+
+function bucketByTime(subs: ContributionSubmission[], period: PeriodKey) {
+  if (subs.length === 0) return [];
+  const now = Date.now();
+  const ms = period === 'all' ? null : MS_MAP[period] * 86_400_000;
+
+  // Determine bucket size
+  let fmt: (ts: number) => string;
+  let step: number;
+
+  if (period === '7d') {
+    step = 86_400_000; // daily
+    fmt = (ts) => new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  } else if (period === '30d') {
+    step = 7 * 86_400_000; // weekly
+    fmt = (ts) => new Date(ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  } else {
+    step = 30 * 86_400_000; // monthly
+    fmt = (ts) => new Date(ts).toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+  }
+
+  const start = ms ? now - ms : Math.min(...subs.map((s) => s.reviewedAt!));
+  const buckets: Record<string, { label: string; quests: number; alana: number }> = {};
+
+  for (let t = start; t <= now; t += step) {
+    const label = fmt(t);
+    if (!buckets[label]) buckets[label] = { label, quests: 0, alana: 0 };
+  }
+
+  subs.forEach((s) => {
+    const label = fmt(s.reviewedAt!);
+    if (!buckets[label]) buckets[label] = { label, quests: 0, alana: 0 };
+    buckets[label].quests += 1;
+    buckets[label].alana += s.finalReward ?? 0;
+  });
+
+  return Object.values(buckets);
 }
 
 function toCSV(rows: ContributionSubmission[]) {
-  const headers = ['Contributor', 'Quest', 'Branch', 'Battery Life %', 'Quality %', 'Final Reward ($ALANA)', 'Approved Date'];
+  const headers = ['Date', 'Contributor', 'Quest', 'Branch', 'Final Reward ($ALANA)'];
   const lines = rows.map((r) => [
+    new Date(r.reviewedAt!).toLocaleDateString(),
     `"${r.contributorName}"`,
     `"${r.templateName}"`,
-    `"${r.branches.join(', ')}"`,
-    r.adjustedBatteryLife ?? r.batteryLife,
-    r.adjustedQuality ?? r.quality,
+    `"${r.branches[0]}"`,
     r.finalReward ?? 0,
-    new Date(r.reviewedAt!).toLocaleDateString(),
   ].join(','));
   return [headers.join(','), ...lines].join('\n');
 }
 
-const BISCUIT = '#FFDDB2';
+// ── Custom tooltip for charts ─────────────────────────────────────────────
 
-const podiumBorder = (idx: number) => idx < 3 ? 'border-l-4 border-l-[#FFDDB2]' : '';
-const rankColor   = (idx: number) => idx < 3 ? BISCUIT : '#6B7280';
+const ChartTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="bg-[#1a1818] border border-foreground/20 px-3 py-2 text-xs font-mono">
+      <div className="text-muted-foreground mb-1">{label}</div>
+      {payload.map((p: any) => (
+        <div key={p.name} style={{ color: p.color }}>
+          {p.name}: {p.value.toLocaleString()}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+// ── Page ──────────────────────────────────────────────────────────────────
 
 export function LeaderboardPage() {
-  const allApproved = useMemo(() =>
-    getAllSubmissions()
-      .filter((s) => s.status === 'approved' && s.reviewedAt)
-      .sort((a, b) => b.reviewedAt! - a.reviewedAt!),
-    []
-  );
-
+  const [allApproved, setAllApproved] = useState<ContributionSubmission[]>([]);
+  const [loading, setLoading] = useState(true);
   const [period, setPeriod] = useState<PeriodKey>('all');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
+    getAllSubmissions()
+      .then((subs) => setAllApproved(subs.filter((s) => s.status === 'approved' && s.reviewedAt)))
+      .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    function handleOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) setDropdownOpen(false);
     }
-    if (dropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
+    if (dropdownOpen) document.addEventListener('mousedown', handleOutside);
+    return () => document.removeEventListener('mousedown', handleOutside);
   }, [dropdownOpen]);
 
-  useEffect(() => {
-    if (searchOpen) searchInputRef.current?.focus();
-    else setSearchQuery('');
-  }, [searchOpen]);
+  const filtered  = useMemo(() => filterByPeriod(allApproved, period, 0), [allApproved, period]);
+  const previous  = useMemo(() => filterByPeriod(allApproved, period, 1), [allApproved, period]);
 
-  const toggleExpanded = (name: string) =>
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      next.has(name) ? next.delete(name) : next.add(name);
-      return next;
-    });
+  // Stats
+  const totalAlana      = filtered.reduce((s, r) => s + (r.finalReward ?? 0), 0);
+  const prevAlana       = previous.reduce((s, r) => s + (r.finalReward ?? 0), 0);
+  const uniqueContribs  = new Set(filtered.map((r) => r.userAddress)).size;
+  const prevContribs    = new Set(previous.map((r) => r.userAddress)).size;
+  const allInPeriod     = period === 'all' ? allApproved.length : filtered.length + allApproved.filter((s) => {
+    if (period === 'all') return false;
+    const ms = MS_MAP[period] * 86_400_000;
+    return s.reviewedAt! < Date.now() - ms;
+  }).length;
+  const approvalRate    = allApproved.length > 0 ? Math.round((filtered.length / Math.max(filtered.length, 1)) * 100) : 0;
 
-  const filtered = useMemo(() => filterByPeriod(allApproved, period), [allApproved, period]);
+  // Chart data
+  const timeData    = useMemo(() => bucketByTime(filtered, period), [filtered, period]);
+  const branchData  = useMemo(() =>
+    BRANCHES.map((b) => ({
+      branch: BRANCH_SHORT[b],
+      quests: filtered.filter((s) => s.branches.includes(b)).length,
+      alana:  filtered.filter((s) => s.branches.includes(b)).reduce((sum, s) => sum + (s.finalReward ?? 0), 0),
+    })).filter((d) => d.quests > 0 || true),
+    [filtered]
+  );
 
-  const contributors = useMemo(() => {
-    const map = new Map<string, { name: string; missions: number; totalReward: number; entries: ContributionSubmission[] }>();
-    filtered.forEach((s) => {
-      const key = s.contributorName.toLowerCase();
-      if (!map.has(key)) map.set(key, { name: s.contributorName, missions: 0, totalReward: 0, entries: [] });
-      const c = map.get(key)!;
-      c.missions += 1;
-      c.totalReward += s.finalReward ?? 0;
-      c.entries.push(s);
-    });
-    return Array.from(map.values()).sort((a, b) => b.totalReward - a.totalReward);
-  }, [filtered]);
-
-  const visibleContributors = useMemo(() => {
-    if (!searchQuery.trim()) return contributors;
+  // Chronological quest log
+  const questLog = useMemo(() => {
+    const sorted = [...filtered].sort((a, b) => b.reviewedAt! - a.reviewedAt!);
+    if (!searchQuery.trim()) return sorted;
     const q = searchQuery.toLowerCase();
-    return contributors.filter(
-      (c) =>
-        c.name.toLowerCase().includes(q) ||
-        c.entries.some((e) => e.templateName.toLowerCase().includes(q))
+    return sorted.filter((s) =>
+      s.templateName?.toLowerCase().includes(q) ||
+      s.contributorName?.toLowerCase().includes(q) ||
+      s.branches?.some((b) => b.toLowerCase().includes(q))
     );
-  }, [contributors, searchQuery]);
+  }, [filtered, searchQuery]);
 
-  const totalReward = filtered.reduce((sum, s) => sum + (s.finalReward ?? 0), 0);
   const currentLabel = PERIODS.find((p) => p.value === period)?.label ?? 'All Time';
 
-  const handleDownloadCSV = () => {
+  const handleExport = () => {
     const csv = toCSV(filtered);
     const blob = new Blob([csv], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `alana-leaderboard-${period}.csv`;
+    a.download = `alana-analytics-${period}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };
 
+  const stats = [
+    { label: 'Total $ALANA Distributed', value: totalAlana.toLocaleString(), change: pctChange(totalAlana, prevAlana), highlight: true },
+    { label: 'Quests Approved',           value: filtered.length,              change: pctChange(filtered.length, previous.length) },
+    { label: 'Active Contributors',       value: uniqueContribs,               change: pctChange(uniqueContribs, prevContribs) },
+    { label: 'Approval Rate',             value: `${approvalRate}%`,           change: null },
+  ];
+
   return (
     <>
       <div className="dark bg-background min-h-[calc(100vh-140px)]">
-        <div className="px-8 md:px-16 py-16 max-w-6xl mx-auto space-y-6">
+        <div className="px-8 md:px-16 py-16 max-w-6xl mx-auto space-y-10">
 
-          {/* Page header */}
-          <div className="space-y-2">
-            <h2 className="text-foreground">ALANA Quest Leaderboard</h2>
-            <p className="text-muted-foreground text-base">
-              Approved contributions from the ALANA community.
-            </p>
-          </div>
-
-          {/* Stats row + search */}
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex flex-wrap gap-3">
-              {[
-                { label: 'Approved Quests', value: filtered.length },
-                { label: 'Contributors',      value: contributors.length },
-                { label: 'Total $ALANA',      value: totalReward.toLocaleString() },
-              ].map((stat) => (
-                <div key={stat.label} className="border border-accent px-5 py-3 flex items-center gap-3">
-                  <span className="text-accent" style={{ fontSize: '16px' }}>{stat.label}</span>
-                  <span className="font-bold font-mono text-accent" style={{ fontSize: '16px' }}>{stat.value}</span>
-                </div>
-              ))}
+          {/* Header */}
+          <div className="flex items-start justify-between gap-6 flex-wrap">
+            <div className="space-y-2">
+              <h2 className="text-foreground">ALANA Calculator Analytics</h2>
+              <p className="text-muted-foreground">
+                Community contribution activity, transparent and public.
+              </p>
             </div>
 
-            {/* Search — expands leftward from icon */}
-            <div className="flex items-center justify-end gap-2">
-              <div className={`overflow-hidden transition-all duration-300 ${searchOpen ? 'w-64 opacity-100' : 'w-0 opacity-0'}`}>
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search contributors…"
-                  className="w-full pr-3 pl-4 h-10 bg-background border-b border-border focus:outline-none focus:border-accent text-foreground placeholder:text-muted-foreground text-sm"
-                />
+            <div className="flex items-center gap-3 flex-1">
+              {/* Search — stretches to fill */}
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search quests, contributors, branches…"
+                className="flex-1 pl-4 pr-4 h-10 bg-background border border-foreground/20 text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-accent/60 transition-colors"
+              />
+
+              {/* Period dropdown — fixed width */}
+              <div className="relative w-56" ref={dropdownRef}>
+                <button
+                  onClick={() => setDropdownOpen((v) => !v)}
+                  className="w-full flex items-center justify-between gap-2 bg-background border border-foreground/20 text-foreground text-sm font-mono pl-3 pr-3 h-10 hover:border-accent/60 transition-colors"
+                >
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-muted-foreground shrink-0" />
+                    <span>{currentLabel}</span>
+                  </div>
+                  <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {dropdownOpen && (
+                  <div className="absolute top-full right-0 w-full mt-0 bg-background border border-foreground/20 border-t-0 z-50">
+                    {PERIODS.map((opt) => (
+                      <button key={opt.value}
+                        onClick={() => { setPeriod(opt.value); setDropdownOpen(false); }}
+                        className={`w-full text-left px-3 py-2.5 text-sm font-mono transition-colors ${opt.value === period ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-foreground/10'}`}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
+
+              {/* Export */}
               <button
-                onClick={() => setSearchOpen((o) => !o)}
-                className="flex items-center justify-center w-10 h-10 text-foreground hover:text-accent transition-colors"
-                aria-label="Toggle search"
+                onClick={handleExport}
+                disabled={filtered.length === 0}
+                className="bg-accent text-accent-foreground font-medium px-6 h-10 rounded-none rounded-br-[15px] hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed whitespace-nowrap"
               >
-                {searchOpen ? <X className="w-5 h-5" /> : <Search className="w-5 h-5" />}
+                Export CSV
               </button>
             </div>
           </div>
 
-          {/* Period + Export row */}
-          <div className="flex items-center gap-3 flex-wrap">
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setDropdownOpen((v) => !v)}
-                className="flex items-center gap-2 bg-background border border-foreground/20 text-foreground text-sm font-mono pl-3 pr-3 h-10 hover:border-accent/60 transition-colors"
-              >
-                <Calendar className="w-4 h-4 text-muted-foreground shrink-0" />
-                <span className="min-w-[120px] text-left">{currentLabel}</span>
-                <ChevronDown className={`w-4 h-4 text-muted-foreground transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {dropdownOpen && (
-                <div className="absolute top-full left-0 right-0 mt-0 bg-background border border-foreground/20 border-t-0 z-50">
-                  {PERIODS.map((opt) => (
-                    <button
-                      key={opt.value}
-                      onClick={() => { setPeriod(opt.value); setDropdownOpen(false); }}
-                      className={`w-full text-left px-3 py-2.5 text-sm font-mono transition-colors ${
-                        opt.value === period
-                          ? 'bg-accent text-accent-foreground'
-                          : 'text-foreground hover:bg-foreground/10'
-                      }`}
-                    >
-                      {opt.label}
-                    </button>
-                  ))}
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="border border-foreground/15 bg-foreground/5 p-5">
+                <div className="text-xs text-muted-foreground mb-2">{stat.label}</div>
+                <div className={`text-2xl font-bold font-mono ${stat.highlight ? 'text-[#FFDDB2]' : 'text-foreground'}`}>
+                  {loading ? '—' : stat.value}
                 </div>
+                {stat.change && period !== 'all' && (
+                  <div className={`text-xs font-mono mt-1 ${stat.change.startsWith('+') ? 'text-[#27EF8C]' : 'text-red-400'}`}>
+                    {stat.change} vs prev period
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Charts */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Quests over time */}
+            <div className="border border-foreground/15 bg-foreground/5 p-6">
+              <h3 className="text-foreground text-base font-medium mb-6">Quests Approved Over Time</h3>
+              {loading ? (
+                <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">Loading…</div>
+              ) : timeData.length === 0 || timeData.every((d) => d.quests === 0) ? (
+                <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">No data for this period</div>
+              ) : (
+                <ResponsiveContainer width="100%" height={200}>
+                  <AreaChart data={timeData} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
+                    <defs>
+                      <linearGradient id="questGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#DCC2FE" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#DCC2FE" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                    <XAxis dataKey="label" tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} />
+                    <YAxis tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} allowDecimals={false} />
+                    <Tooltip content={<ChartTooltip />} />
+                    <Area type="monotone" dataKey="quests" name="Quests" stroke="#DCC2FE" fill="url(#questGradient)" strokeWidth={2} dot={false} />
+                  </AreaChart>
+                </ResponsiveContainer>
               )}
             </div>
 
-            <button
-              onClick={handleDownloadCSV}
-              disabled={filtered.length === 0}
-              className="bg-accent text-ac font-[Roboto]cent-foreground font-medium px-6 h-10 rounded-none rounded-br-[15px] hover:bg-foreground hover:text-background transition-colors disabled:opacity-30 disabled:cursor-not-allowed whitespace-nowrap"
-            >
-              Export CSV
-            </button>
+            {/* Output by branch */}
+            <div className="border border-foreground/15 bg-foreground/5 p-6">
+              <h3 className="text-foreground text-base font-medium mb-6">Output by Branch</h3>
+              {loading ? (
+                <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">Loading…</div>
+              ) : branchData.every((d) => d.quests === 0) ? (
+                <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">No data for this period</div>
+              ) : (
+                <ResponsiveContainer width="100%" height={200}>
+                  <BarChart data={branchData} layout="vertical" margin={{ top: 0, right: 4, left: 0, bottom: 0 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
+                    <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} allowDecimals={false} />
+                    <YAxis type="category" dataKey="branch" tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} width={120} />
+                    <Tooltip content={<ChartTooltip />} />
+                    <Bar dataKey="quests" name="Quests" fill="#DCC2FE" radius={0} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </div>
           </div>
 
-          {/* Leaderboard */}
-          {filtered.length === 0 ? (
-            <div className="border border-foreground/15 p-16 text-center">
-              <p className="text-muted-foreground">No approved contributions for this period.</p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {visibleContributors.map((c, idx) => {
-                const barPct = totalReward > 0 ? (c.totalReward / totalReward) * 100 : 0;
-                const globalIdx = contributors.indexOf(c);
-                const isFirstBelowPodium = globalIdx === 3 && idx > 0;
+          {/* $ALANA distributed over time */}
+          <div className="border border-foreground/15 bg-foreground/5 p-6">
+            <h3 className="text-foreground text-base font-medium mb-6">$ALANA Distributed Over Time</h3>
+            {loading ? (
+              <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">Loading…</div>
+            ) : timeData.every((d) => d.alana === 0) ? (
+              <div className="h-48 flex items-center justify-center text-muted-foreground text-sm">No data for this period</div>
+            ) : (
+              <ResponsiveContainer width="100%" height={200}>
+                <AreaChart data={timeData} margin={{ top: 4, right: 4, left: -10, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="alanaGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#FFDDB2" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#FFDDB2" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                  <XAxis dataKey="label" tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} />
+                  <YAxis tick={{ fill: '#9ca3af', fontSize: 10 }} tickLine={false} axisLine={false} />
+                  <Tooltip content={<ChartTooltip />} />
+                  <Area type="monotone" dataKey="alana" name="$ALANA" stroke="#FFDDB2" fill="url(#alanaGradient)" strokeWidth={2} dot={false} />
+                </AreaChart>
+              </ResponsiveContainer>
+            )}
+          </div>
 
-                return (
-                  <div key={c.name}>
-                    {/* Separator between podium and the rest */}
-                    {isFirstBelowPodium && (
-                      <div className="h-px bg-accent/40 mb-3" />
-                    )}
+          {/* Approved Quest Log */}
+          <div className="space-y-4">
+            <h3 className="text-foreground">
+              Approved Quests
+              <span className="text-sm font-normal text-muted-foreground ml-2 font-mono">{questLog.length} total</span>
+            </h3>
 
-                    <div
-                      className={`border border-foreground/15 rounded-none rounded-br-[25px] p-5 space-y-3 bg-foreground/5 ${podiumBorder(globalIdx)}`}
-                    >
-                      <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-4">
-                          <span
-                            className="text-2xl font-bold w-8 shrink-0 font-mono"
-                            style={{ color: rankColor(globalIdx) }}
-                          >
-                            {globalIdx + 1}
-                          </span>
-                          <div>
-                            <div className="font-medium text-foreground">{c.name}</div>
-                            <div className="text-xs text-muted-foreground mt-0.5">
-                              {c.missions} mission{c.missions !== 1 ? 's' : ''}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-lg font-bold text-[#FFDDB2]">{c.totalReward.toLocaleString()}</div>
-                          <div className="text-xs text-muted-foreground">$ALANA</div>
-                        </div>
+            {loading ? (
+              <div className="border border-foreground/15 p-12 text-center">
+                <p className="text-muted-foreground">Loading…</p>
+              </div>
+            ) : questLog.length === 0 ? (
+              <div className="border border-foreground/15 p-12 text-center">
+                <p className="text-muted-foreground">No approved quests for this period.</p>
+              </div>
+            ) : (
+              <div className="border border-foreground/15">
+                {/* Table header */}
+                <div className="grid grid-cols-[1fr_auto_auto_auto] gap-4 px-5 py-3 border-b border-foreground/10 text-xs text-muted-foreground font-mono uppercase tracking-wide">
+                  <span>Quest</span>
+                  <span className="hidden md:block">Branch</span>
+                  <span>Contributor</span>
+                  <span className="text-right">$ALANA</span>
+                </div>
+                {questLog.map((s, idx) => (
+                  <div
+                    key={s.id}
+                    className={`grid grid-cols-[1fr_auto_auto_auto] gap-4 px-5 py-3 items-center text-sm ${idx % 2 === 0 ? '' : 'bg-foreground/[0.03]'} border-b border-foreground/5 last:border-0`}
+                  >
+                    <div className="min-w-0">
+                      <div className="text-foreground/90 truncate">{s.templateName}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5 font-mono">
+                        {new Date(s.reviewedAt!).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                       </div>
-
-                      {/* Reward proportion bar */}
-                      <div className="h-px bg-foreground/10">
-                        <div
-                          className="h-full bg-[#FFDDB2] transition-all duration-500"
-                          style={{ width: `${barPct}%` }}
-                        />
-                      </div>
-
-                      {/* Collapsible missions breakdown */}
-                      <button
-                        onClick={() => toggleExpanded(c.name)}
-                        className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-accent transition-colors font-mono pt-1"
-                      >
-                        <ChevronDown className={`w-3 h-3 transition-transform ${expanded.has(c.name) ? 'rotate-180' : ''}`} />
-                        {expanded.has(c.name) ? 'Hide' : 'View'} quests ({c.missions})
-                      </button>
-
-                      {expanded.has(c.name) && (
-                        <div className="space-y-2 pt-2 border-t border-foreground/10">
-                          {c.entries.map((s) => (
-                            <div key={s.id} className="flex items-center justify-between gap-4 text-sm">
-                              <div className="flex-1 min-w-0">
-                                <span className="text-foreground/80">{s.templateName}</span>
-                                <div className="flex flex-wrap gap-1 mt-1">
-                                  {s.branches.map((b) => (
-                                    <span key={b} className="text-xs px-2 py-0.5 bg-accent/10 border border-accent/30 text-accent/80 rounded-none">
-                                      {b}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                              <div className="text-right shrink-0">
-                                <div className="font-medium text-[#FFDDB2]">
-                                  {(s.finalReward ?? 0).toLocaleString()} $ALANA
-                                </div>
-                                <div className="text-xs text-muted-foreground">
-                                  {new Date(s.reviewedAt!).toLocaleDateString()}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </div>
+                    <span className="hidden md:inline-block text-xs px-2 py-0.5 bg-accent/10 border border-accent/30 text-accent/80 whitespace-nowrap">
+                      {s.branches[0]}
+                    </span>
+                    <span className="text-muted-foreground text-xs whitespace-nowrap">{s.contributorName}</span>
+                    <span className="text-right font-mono font-medium text-[#FFDDB2] whitespace-nowrap">
+                      {(s.finalReward ?? 0).toLocaleString()}
+                    </span>
                   </div>
-                );
-              })}
-            </div>
-          )}
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
-
       <Footer />
     </>
   );
