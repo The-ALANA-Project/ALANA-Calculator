@@ -8,10 +8,6 @@ A transparent, NFT-gated internal tool built by [The ALANA Project](https://the-
 
 ---
 
-# ALANA Calculator
-
----
-
 ## What it does
 
 - **Quest submission** — Contributors submit completed tasks from a shared quest library, input their Battery Life and Quality estimates, and attach proof of work
